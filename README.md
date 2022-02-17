@@ -41,26 +41,26 @@ yarn serve
 ├── vite.config.ts  vite打包配置  
 ├── public  项目通用静态资源  
 └── src  
-    ├── assets  组件静态资源  
-    ├── components  通用组件(非逻辑组件)  
-    ├── hooks  通用hook  
-    ├── utils  通用工具函数  
-    ├── http  ajax通用逻辑  
-        ├── service  通用ajax请求函数  
-        ├── errorCode.ts  错误码  
-        └── index.tsx  axios抽象函数  
-    ├── pages  页面模块  
-        ├── Example  例子页面模块  
-            ├── components  例子模块独立组件  
-            ├── hooks  例子模块独立hook  
-            ├── service  例子模块独立ajax逻辑  
-            ├── utils.ts  例子模块独立工具函数  
-            ├── index.scss  例子模块样式文件  
-            └── index.vue  例子模块单文件组件  
-    ├── router  路由配置文件  
-    ├── store  vuex配置文件  
-    ├── styles  全局样式配置  
-    ├── App.vue  应用单文件组件  
-    ├── env.d.ts  全局类型定义文件（一般用于定义缺少@types 的依赖库）  
-    ├── main.ts  入口文件  
-    └── theme.ts  全局自定义主题配置  
+    >├── assets  组件静态资源  
+    >├── components  通用组件(非逻辑组件)  
+    >├── hooks  通用hook  
+    >├── utils  通用工具函数  
+    >├── http  ajax通用逻辑  
+        >>├── service  通用ajax请求函数  
+        >>├── errorCode.ts  错误码  
+        >>└── index.tsx  axios抽象函数  
+    >├── pages  页面模块  
+        >>├── Example  例子页面模块  
+            >>>├── components  例子模块独立组件  
+            >>>├── hooks  例子模块独立hook  
+            >>>├── service  例子模块独立ajax逻辑  
+            >>>├── utils.ts  例子模块独立工具函数  
+            >>>├── index.scss  例子模块样式文件  
+            >>>└── index.vue  例子模块单文件组件  
+    >├── router  路由配置文件  
+    >├── store  vuex配置文件  
+    >├── styles  全局样式配置  
+    >├── App.vue  应用单文件组件  
+    >├── env.d.ts  全局类型定义文件（一般用于定义缺少@types 的依赖库）  
+    >├── main.ts  入口文件  
+    >└── theme.ts  全局自定义主题配置  
