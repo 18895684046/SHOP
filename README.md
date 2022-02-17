@@ -32,7 +32,9 @@ yarn serve
 
 .
 ├── package.json
+
 ├── .env  所有环境都会加载的环境变量
+
 ├── .env.development  测试服和本地加载的环境变量
 ├── .env.production  正式服加载的环境变量
 ├── .gitignore
