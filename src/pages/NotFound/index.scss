@@ -1,0 +1,19 @@
+.error-container {
+  width: 980px;
+  margin: 30px auto 30px;
+  background: #fff;
+  border-radius: 10px;
+
+  .error-panel {
+    text-align: center;
+
+    .rollback-btn-wrp {
+      text-align: center;
+      padding: 0 0 40px 0;
+
+      .rollback-btn {
+        padding: 0 20px;
+      }
+    }
+  }
+}

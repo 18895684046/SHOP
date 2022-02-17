@@ -2,10 +2,18 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Cookies from 'js-cookie'
 import { Base64 } from 'js-base64'
 
+// example
+const Example = () => import('@/pages/Example/index.vue')
+
 // 404
 const NotFound = () => import('@/pages/NotFound/index.vue')
 
 const routes: RouteRecordRaw[] = [
+  {
+    path: '/example',
+    name: 'example',
+    component: Example
+  },
   {
     path: '/:pathMatch(.*)*',
     name: 'notFound',

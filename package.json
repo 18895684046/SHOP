@@ -4,7 +4,7 @@
   "description": "QAQ平台前端项目模板",
   "author": "QAQ",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "vue-tsc --noEmit && vite build --mode production",
     "build-dev": "vue-tsc --noEmit && vite build --mode development",
     "serve": "vite preview"
