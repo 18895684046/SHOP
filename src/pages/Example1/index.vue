@@ -8,7 +8,7 @@ const apps = useApps()
 <template>
   <div class="container">
     <NCard v-for="app of apps" :title="app?.appName">
-      {{ app?.appName }}
+      22222222
     </NCard>
   </div>
 </template>

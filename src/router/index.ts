@@ -5,6 +5,9 @@ import { Base64 } from 'js-base64'
 // example
 const Example = () => import('@/pages/Example/index.vue')
 
+// example
+const Example1 = () => import('@/pages/Example1/index.vue')
+
 // 404
 const NotFound = () => import('@/pages/NotFound/index.vue')
 
@@ -12,6 +15,21 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/example',
     name: 'example',
+    component: Example
+  },
+  {
+    path: '/example1',
+    name: 'example1',
+    component: Example1
+  },
+  {
+    path: '/example2',
+    name: 'example2',
+    component: Example
+  },
+  {
+    path: '/example3',
+    name: 'example3',
     component: Example
   },
   {
