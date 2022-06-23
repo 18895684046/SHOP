@@ -1,15 +1,25 @@
 <script setup lang="ts">
-import { NCard } from 'naive-ui'
-import useApps from './hooks/useApps'
+import { NCalendar } from 'naive-ui'
+import { ref } from 'vue'
+import { useMessage } from 'naive-ui'
+import { isYesterday, addDays } from 'date-fns/esm'
 
-const apps = useApps()
+const value = ref(addDays(Date.now(), 1).valueOf())
+
+const isDateDisabled = (timestamp: number) => {
+  if (isYesterday(timestamp)) {
+    return true
+  }
+  return false
+}
+
 </script>
 
 <template>
   <div class="container">
-    <NCard v-for="app of apps" :title="app?.appName">
-      22222222
-    </NCard>
+    <NCalendar v-model:value="value" #="{ year, month, date }" :is-date-disabled="isDateDisabled">
+      {{ year }}-{{ month }}-{{ date }}
+    </NCalendar>
   </div>
 </template>
 

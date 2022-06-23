@@ -30,6 +30,23 @@
   }
 
   .pop-wrp {
+    .pop-header {
+      margin: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .pop-hd-logo-wrp {
+        display: inline-block;
+        text-align: center;
+        font-size: 0;
+    
+        .pop-hd-logo {
+          height: 24px;
+          margin-right: 8px;
+        }
+      }
+    }
   }
 
   .hd-user {
