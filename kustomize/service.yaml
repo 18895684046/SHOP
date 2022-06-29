@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: template-web
+  namespace: qa-dev
+  labels:
+    app: template-web
+    service: template-web
+spec:
+  selector:
+    app: template-web
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80

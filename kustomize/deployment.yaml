@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: template-web
+  namespace: qa-dev
+  labels:
+    app: template-web
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: template-web
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: template-web
+        version: v1
+    spec:
+      imagePullSecrets:
+        - name: harborsecret
+      containers:
+        - name: template-web
+          image: hub.bilibili.co/lifajin/template-web:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Cookies from 'js-cookie'
-import { NAvatar, NIcon, NDropdown } from 'naive-ui'
-import { CaretDownFilled } from '@vicons/antd'
+import { NIcon } from 'naive-ui'
+import { PoweroffOutlined, RightOutlined, UserOutlined } from '@vicons/antd'
 import { logout } from '@/utils'
 import { getNavbar } from "@/http/service/navbar"
 import logoImg from '@/assets/logo.png'
@@ -42,6 +42,7 @@ getNavbar().then(
  * 用户栏逻辑分区
  */
 const avatar = Cookies.get('avatar')
+const nickname = (Cookies.get('fullname') || '').replace(/\+/g, ' ')
 
 const operations = [
   {
@@ -54,21 +55,10 @@ const operations = [
   }
 ]
 
-// 点击相关操作
-const handleOperSelect = (key: string) => {
-  switch (key) {
-    case 'admin':
-      window.location.href = mainStageUrl + '/uniauth/project/'
-      break
-
-    case 'logout':
-      logout()
-      break
-
-    default:
-      return
-  }
+const linkToAdmin = () => {
+  window.location.href = mainStageUrl + '/uniauth'
 }
+
 </script>
 
 <template>
@@ -109,15 +99,48 @@ const handleOperSelect = (key: string) => {
         </li>
       </ul>
 
-      <!-- 用户栏 -->
-      <NDropdown trigger="hover" @select="handleOperSelect" :options="operations">
-        <div class="hd-user">
-          <NAvatar round :size="20" :src="avatar" />
-          <NIcon class="hd-user-arw" size="8">
-            <CaretDownFilled />
-          </NIcon>
+      <div class="hd-user">
+        <div class="avatar">
+          <img :src="avatar" />
         </div>
-      </NDropdown>
+
+        <div class="hd-detail-wrp">
+          <div class="hd-detail-panel">
+            <div class="name-wrp">
+              <span class="nickname">{{ nickname }}</span>
+            </div>
+
+            <div class="hd-detail-item" @click="linkToAdmin">
+              <div class="link-title">
+                <NIcon class="link-icn">
+                  <UserOutlined />
+                </NIcon>
+                <span>后台管理</span>
+              </div>
+              <NIcon>
+                <RightOutlined />
+              </NIcon>
+            </div>
+
+            <div class="hd-detail-item" @click="logout">
+              <div class="link-title">
+                <NIcon class="link-icn">
+                  <PoweroffOutlined />
+                </NIcon>
+                <span>退出登录</span>
+              </div>
+              <NIcon>
+                <RightOutlined />
+              </NIcon>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 用户栏 -->
+      <!-- <NDropdown trigger="hover" @select="handleOperSelect" :options="operations">
+
+      </NDropdown> -->
     </div>
   </div>
 </template>

@@ -41,7 +41,7 @@ const routes: RouteRecordRaw[] = [
 
 const router = createRouter({
   // base url 在此定义项目的公共路由前缀 这里我用测试用例举例
-  history: createWebHistory('/testcase/'),
+  history: createWebHistory('/template/'),
   routes,
 })
 
