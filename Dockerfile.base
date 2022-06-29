@@ -2,4 +2,4 @@ FROM node:lts-alpine
 
 WORKDIR /app
 ADD package.json /app
-RUN npm install --registry=https://registry.npm.taobao.org
+RUN npm install --legacy-peer-deps --registry=https://registry.npm.taobao.org
