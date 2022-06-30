@@ -5,7 +5,6 @@ import { NIcon } from 'naive-ui'
 import { PoweroffOutlined, RightOutlined, UserOutlined } from '@vicons/antd'
 import { logout } from '@/utils'
 import { getNavbar } from "@/http/service/navbar"
-import logoImg from '@/assets/logo.png'
 
 // 菜单项数据
 interface MenuItem {
@@ -43,17 +42,6 @@ getNavbar().then(
  */
 const avatar = Cookies.get('avatar')
 const nickname = (Cookies.get('fullname') || '').replace(/\+/g, ' ')
-
-const operations = [
-  {
-    label: '后台管理',
-    key: 'admin'
-  },
-  {
-    label: '退出登录',
-    key: 'logout'
-  }
-]
 
 const linkToAdmin = () => {
   window.location.href = mainStageUrl + '/uniauth'

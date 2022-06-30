@@ -3,15 +3,17 @@ import { NConfigProvider } from 'naive-ui'
 import Header from '@/components/Header/index.vue'
 import MobileHeader from '@/mobileComponents/mobileHeader/index.vue'
 import { themeOverrides } from '@/theme'
-import { getIsMobile } from '@/utils'
-
-const isMobile = getIsMobile()
 </script>
 
 <template>
   <NConfigProvider class="n-provider" :theme-overrides="themeOverrides">
-    <MobileHeader v-if="isMobile" />
-    <Header v-else />
+    <div class="hd-mobile">
+      <MobileHeader />
+    </div>
+
+    <div class="hd-pc">
+      <Header />
+    </div>
 
     <div class="main">
       <router-view></router-view>
@@ -20,23 +22,31 @@ const isMobile = getIsMobile()
 </template>
 
 <style lang="scss">
+
+
 @import "@/styles/global.scss";
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1100px) {
   .n-provider {
-    min-width: 800px;
     height: 100%;
   }
 
+  .hd-mobile {
+    display: none;
+  }
+
   .main {
-    min-width: 800px;
     height: calc(100vh - 76px);
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1099px) {
   .n-provider {
     height: 100%;
+  }
+
+  .hd-pc {
+    display: none;
   }
 
   .main {

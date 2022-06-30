@@ -15,10 +15,10 @@
     .hd-logo-wrp {
       text-align: center;
       font-size: 0;
+      margin: 0 100px 0 8px;
 
       .hd-logo {
         height: 24px;
-        margin-right: 100px;
       }
     }
 
@@ -54,7 +54,7 @@
       }
 
       .hd-nav-srvs {
-        &:hover {
+        &:hover, &:active {
           .hd-subnav-wrp {
             height: 350px;
           }
@@ -162,7 +162,7 @@
   position: relative; 
   height: 100%;
   width: 40px;
-  margin: 0 24px 0 32px;
+  margin: 0 60px 0 32px;
   cursor: pointer;
 
   .hd-user-arw {

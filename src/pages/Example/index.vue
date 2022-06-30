@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { NCarousel, NCard, NNumberAnimation, NSpace, NSlider, NDataTable } from 'naive-ui'
-import { h, defineComponent, ref } from 'vue'
+import { h, ref } from 'vue'
 import type { DataTableColumns } from 'naive-ui'
 
 type RowData = {

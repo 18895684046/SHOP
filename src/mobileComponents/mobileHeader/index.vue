@@ -2,7 +2,8 @@
 import { ref } from 'vue'
 import Cookies from 'js-cookie'
 import { ConfigProvider, Icon, Popup, Collapse, CollapseItem } from 'vant'
-import { NAvatar, NDropdown } from 'naive-ui'
+import { NAvatar, NIcon } from 'naive-ui'
+import { PoweroffOutlined, RightOutlined, UserOutlined } from '@vicons/antd'
 import { logout } from '@/utils'
 import { getNavbar } from "@/http/service/navbar"
 
@@ -35,6 +36,7 @@ const services = ref<{
 })
 const show = ref<boolean>(false)
 const activeNames = ref<any>([])
+const curTabText = ref<string>('') 
 
 // 获取所有服务信息
 getNavbar().then(
@@ -42,6 +44,10 @@ getNavbar().then(
     services.value = res?.data?.menu?.find((i: any) => i.name === '测试服务')?.submenu
   }
 )
+
+const setCurTabText = (value: string) => {
+  curTabText.value = value
+}
 
 const showPopup = () => {
   show.value = true
@@ -53,36 +59,19 @@ const hrefTo = (disabled: boolean, url: string) => {
   window.location.href = url
 }
 
+const handleSubSrvClick = (disabled: boolean, url: string, name: string) => {
+  hrefTo(disabled, url)
+  setCurTabText(name)
+}
+
 /**
  * 用户栏逻辑分区
  */
 const avatar = Cookies.get('avatar')
+const nickname = (Cookies.get('fullname') || '').replace(/\+/g, ' ')
 
-const operations = [
-  {
-    label: '后台管理',
-    key: 'admin'
-  },
-  {
-    label: '退出登录',
-    key: 'logout'
-  }
-]
-
-// 点击相关操作
-const handleOperSelect = (key: string) => {
-  switch (key) {
-    case 'admin':
-      window.location.href = mainStageUrl + '/uniauth/project/'
-      break
-
-    case 'logout':
-      logout()
-      break
-
-    default:
-      return
-  }
+const linkToAdmin = () => {
+  window.location.href = mainStageUrl + '/uniauth'
 }
 </script>
 
@@ -108,11 +97,27 @@ const handleOperSelect = (key: string) => {
             </div>
 
             <Collapse :border="false" v-model="activeNames">
-              <CollapseItem :border="false" title="测试服务" name="100">
-                <CollapseItem style="padding: 0;" :border="false" v-for="(service, index) of services"
-                  :title="service.name" :name="index">
-                  <CollapseItem v-for="subSrv of service.subServices" readonly :disabled="subSrv.disabled"
-                    :border="false" @click="hrefTo(subSrv.disabled, subSrv.url)">
+              <CollapseItem 
+                :class="{ 'hd-mobile-active-tab': curTabText === '测试服务' }"
+                @click.stop="setCurTabText('测试服务')"
+                :border="false" title="测试服务"
+                name="100"
+              >
+                <CollapseItem
+                  style="padding: 0;"
+                  :border="false" v-for="(service, index) of services"
+                  :title="service.name"
+                  :name="index"
+                  :class="{ 'hd-mobile-active-tab': curTabText === service.name }"
+                  @click.stop="setCurTabText(service.name)"
+                >
+                  <CollapseItem
+                    v-for="subSrv of service.subServices"
+                    readonly
+                    :disabled="subSrv.disabled"
+                    :border="false"
+                    @click.stop="handleSubSrvClick(subSrv.disabled, subSrv.url, subSrv.name)"
+                  >
                     <template #title>
                       <div>{{ subSrv.name }}</div>
                     </template>
@@ -122,9 +127,14 @@ const handleOperSelect = (key: string) => {
                 </CollapseItem>
               </CollapseItem>
 
-              <CollapseItem readonly :border="false">
+              <CollapseItem
+                readonly
+                :border="false"
+                :class="{ 'hd-mobile-active-tab': curTabText === '用例管理' }"
+                @click="setCurTabText('用例管理')"
+              >
                 <template #title>
-                  <div>
+                  <div class="link-wrp">
                     <router-link :to="{ name: 'example1' }">用例管理</router-link>
                   </div>
                 </template>
@@ -132,9 +142,14 @@ const handleOperSelect = (key: string) => {
                 </template>
               </CollapseItem>
 
-              <CollapseItem readonly :border="false">
+              <CollapseItem 
+                readonly
+                :border="false"
+                :class="{ 'hd-mobile-active-tab': curTabText === '用例执行' }"
+                @click="setCurTabText('用例执行')"
+              >
                 <template #title>
-                  <div>
+                  <div class="link-wrp">
                     <router-link :to="{ name: 'example2' }">用例执行</router-link>
                   </div>
                 </template>
@@ -142,9 +157,14 @@ const handleOperSelect = (key: string) => {
                 </template>
               </CollapseItem>
 
-              <CollapseItem readonly :border="false">
+              <CollapseItem
+                readonly
+                :border="false"
+                :class="{ 'hd-mobile-active-tab': curTabText === '帮助中心' }"
+                @click="setCurTabText('帮助中心')"
+              >
                 <template #title>
-                  <div>
+                  <div class="link-wrp">
                     <router-link :to="{ name: 'example3' }">帮助中心</router-link>
                   </div>
                 </template>
@@ -156,14 +176,43 @@ const handleOperSelect = (key: string) => {
         </Popup>
 
         <!-- 用户栏 -->
-        <NDropdown trigger="hover" @select="handleOperSelect" :options="operations">
-          <div class="hd-user">
-            <NAvatar round :size="20" :src="avatar" />
-            <!-- <NIcon class="hd-user-arw" size="8">
-            <CaretDownFilled />
-          </NIcon> -->
+        <div class="hd-user">
+          <div class="avatar">
+            <img :src="avatar" />
           </div>
-        </NDropdown>
+
+          <div class="hd-detail-wrp">
+            <div class="hd-detail-panel">
+              <div class="name-wrp">
+                <span class="nickname">{{ nickname }}</span>
+              </div>
+
+              <div class="hd-detail-item" @click="linkToAdmin">
+                <div class="link-title">
+                  <NIcon class="link-icn">
+                    <UserOutlined />
+                  </NIcon>
+                  <span>后台管理</span>
+                </div>
+                <NIcon>
+                  <RightOutlined />
+                </NIcon>
+              </div>
+
+              <div class="hd-detail-item" @click="logout">
+                <div class="link-title">
+                  <NIcon class="link-icn">
+                    <PoweroffOutlined />
+                  </NIcon>
+                  <span>退出登录</span>
+                </div>
+                <NIcon>
+                  <RightOutlined />
+                </NIcon>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </ConfigProvider>
