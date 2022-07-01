@@ -1,13 +1,15 @@
 import { State } from './state'
 
 export enum Mutations {
-  // 例子
-  exampleMutations = 'exampleMutations'
+  // 设置 projectId
+  setProjectId = 'setProjectId'
 }
 
+
 export const mutations = {
-  // 定义mutations例子
-  [Mutations.exampleMutations](state: State, payload: any) {
-    // toDo
+  // 设置 projectId
+  [Mutations.setProjectId](state: State, projectId: string) {
+    sessionStorage.setItem('projectId', projectId)
+    state.projectId = projectId
   }
 }

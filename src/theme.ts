@@ -1,7 +1,9 @@
+import { GlobalThemeOverrides } from 'naive-ui'
+
 const $bili_blue = '#0CB6F2'
 
 // 自定义naive全局样式
-export const themeOverrides = {
+export const themeOverrides: GlobalThemeOverrides = {
   common: {
     primaryColor: $bili_blue
   },

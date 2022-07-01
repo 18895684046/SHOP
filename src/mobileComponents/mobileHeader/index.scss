@@ -57,13 +57,10 @@
       }
     }
   }
-
-  
 }
 
 .hd-user {
-  position: absolute;
-  right: 0;
+  position: relative;
   height: 100%;
   width: 40px;
   margin: 0 60px 0 32px;
@@ -164,5 +161,19 @@
       max-height: 300px;
       padding-top: 12px;
     }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .hd-prj {
+    width: 175px;
+    margin-right: 32px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .hd-prj {
+    width: 120px;
+    margin-right: 32px;
   }
 }

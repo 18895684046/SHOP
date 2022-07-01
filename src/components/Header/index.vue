@@ -1,41 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import Cookies from 'js-cookie'
-import { NIcon } from 'naive-ui'
+import { NIcon, NSelect } from 'naive-ui'
 import { PoweroffOutlined, RightOutlined, UserOutlined } from '@vicons/antd'
 import { logout } from '@/utils'
-import { getNavbar } from "@/http/service/navbar"
 
-// 菜单项数据
-interface MenuItem {
-  disabled: boolean;
-  name: string;
-
-  // 子菜单
-  submenu?: any[];
-  url: string;
-}
+const props = defineProps<{
+  services: any,
+  projectId: string,
+  projects: any[],
+  handleProjectSelected: (value: string) => void
+}>()
 
 // 主站地址
 const mainStageUrl = import.meta.env.VITE_HTTP_BASE_URL as string
-
-/**
- * 导航栏逻辑分区
- */
-const services = ref<{
-  home: any;
-  menu: MenuItem[];
-}>({
-  home: {},
-  menu: []
-})
-
-// 获取所有服务信息
-getNavbar().then(
-  res => {
-    services.value = res?.data?.menu?.find((i: any) => i.name === '测试服务')?.submenu
-  }
-)
 
 /**
  * 用户栏逻辑分区
@@ -46,7 +23,6 @@ const nickname = (Cookies.get('fullname') || '').replace(/\+/g, ' ')
 const linkToAdmin = () => {
   window.location.href = mainStageUrl + '/uniauth'
 }
-
 </script>
 
 <template>
@@ -87,6 +63,17 @@ const linkToAdmin = () => {
         </li>
       </ul>
 
+      <!-- 项目栏 -->
+      <div class="hd-prj">
+        <NSelect
+          v-if="projectId"
+          :default-value="projectId"
+          :options="projects"
+          @update:value="handleProjectSelected"
+        />
+      </div>
+
+      <!-- 用户栏 -->
       <div class="hd-user">
         <div class="avatar">
           <img :src="avatar" />
@@ -124,11 +111,6 @@ const linkToAdmin = () => {
           </div>
         </div>
       </div>
-
-      <!-- 用户栏 -->
-      <!-- <NDropdown trigger="hover" @select="handleOperSelect" :options="operations">
-
-      </NDropdown> -->
     </div>
   </div>
 </template>

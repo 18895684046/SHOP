@@ -1,11 +1,7 @@
-// 定义state类型
 export interface State {
-  // 例子
-  exampleGetter: any;
+  projectId: string;
 }
 
-//定义state默认值
 export const state: State = {
-  // 例子
-  exampleGetter: ''
+  projectId: ''
 }

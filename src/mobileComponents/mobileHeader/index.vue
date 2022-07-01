@@ -2,20 +2,16 @@
 import { ref } from 'vue'
 import Cookies from 'js-cookie'
 import { ConfigProvider, Icon, Popup, Collapse, CollapseItem } from 'vant'
-import { NAvatar, NIcon } from 'naive-ui'
+import { NAvatar, NIcon, NSelect } from 'naive-ui'
 import { PoweroffOutlined, RightOutlined, UserOutlined } from '@vicons/antd'
 import { logout } from '@/utils'
-import { getNavbar } from "@/http/service/navbar"
 
-// 菜单项数据
-interface MenuItem {
-  disabled: boolean;
-  name: string;
-
-  // 子菜单
-  submenu?: any[];
-  url: string;
-}
+const props = defineProps<{
+  services: any,
+  projectId: string,
+  projects: any[],
+  handleProjectSelected: (value: string) => void
+}>()
 
 // 主站地址
 const mainStageUrl = import.meta.env.VITE_HTTP_BASE_URL as string
@@ -24,26 +20,9 @@ const themeVars = {
   collapseItemContentPadding: '0 16px'
 };
 
-/**
- * 导航栏逻辑分区
- */
-const services = ref<{
-  home: any;
-  menu: MenuItem[];
-}>({
-  home: {},
-  menu: []
-})
 const show = ref<boolean>(false)
 const activeNames = ref<any>([])
 const curTabText = ref<string>('') 
-
-// 获取所有服务信息
-getNavbar().then(
-  res => {
-    services.value = res?.data?.menu?.find((i: any) => i.name === '测试服务')?.submenu
-  }
-)
 
 const setCurTabText = (value: string) => {
   curTabText.value = value
@@ -84,7 +63,7 @@ const linkToAdmin = () => {
           <img class="hd-logo" src="https://qagame.bilibili.co/static/web/logo.svg?token=1" />
         </a>
 
-        <Icon class="icn-menu" name="bars" size="20" @click="showPopup" />
+        <Icon style="flex: 1" class="icn-menu" name="bars" size="20" @click="showPopup" />
 
         <Popup v-model:show="show" position="left" :style="{ height: '100%', width: '80%' }">
           <div class="pop-wrp">
@@ -174,6 +153,16 @@ const linkToAdmin = () => {
             </Collapse>
           </div>
         </Popup>
+
+        <!-- 项目栏 -->
+        <div class="hd-prj">
+          <NSelect
+            v-if="projectId"
+            :default-value="projectId"
+            :options="projects"
+            @update:value="handleProjectSelected"
+          />
+        </div>
 
         <!-- 用户栏 -->
         <div class="hd-user">

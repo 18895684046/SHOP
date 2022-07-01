@@ -3,16 +3,35 @@ import { NConfigProvider } from 'naive-ui'
 import Header from '@/components/Header/index.vue'
 import MobileHeader from '@/mobileComponents/mobileHeader/index.vue'
 import { themeOverrides } from '@/theme'
+import useNavbar from '@/hooks/useNavbar'
+import useProjectId from '@/hooks/useProjectId'
+
+const services = useNavbar()
+const {
+  projectId,
+  projects,
+  handleProjectSelected
+} = useProjectId()
 </script>
 
 <template>
   <NConfigProvider class="n-provider" :theme-overrides="themeOverrides">
     <div class="hd-mobile">
-      <MobileHeader />
+      <MobileHeader 
+        :services="services" 
+        :projectId="projectId" 
+        :projects="projects" 
+        :handleProjectSelected="handleProjectSelected" 
+      />
     </div>
 
     <div class="hd-pc">
-      <Header />
+      <Header
+        :services="services" 
+        :projectId="projectId" 
+        :projects="projects" 
+        :handleProjectSelected="handleProjectSelected"
+      />
     </div>
 
     <div class="main">

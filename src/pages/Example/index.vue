@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NCarousel, NCard, NNumberAnimation, NSpace, NSlider, NDataTable } from 'naive-ui'
+import { NCarousel, NCard, NNumberAnimation, NSpace, NSlider, NDataTable, NDescriptions, NDescriptionsItem } from 'naive-ui'
 import { h, ref } from 'vue'
 import type { DataTableColumns } from 'naive-ui'
 
@@ -93,6 +93,59 @@ const height = ref(300)
           :style="{ height: `${height}px` }" flex-height />
       </NSpace>
     </NCard>
+
+    <div style="height: 24px"></div>
+
+    <NDescriptions label-placement="top" bordered :column="6">
+      <NDescriptionsItem>
+        <template #label>
+          早餐
+        </template>
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="早午餐">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="午餐">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="晚餐">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="正餐">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="夜宵">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="苹果">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="苹果" :span="2">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="苹果" :span="3">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="苹果">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="苹果" :span="2">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="苹果" :span="3">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="苹果">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="苹果" :span="2">
+        苹果
+      </NDescriptionsItem>
+      <NDescriptionsItem label="苹果" :span="3">
+        苹果
+      </NDescriptionsItem>
+    </NDescriptions>
   </div>
 </template>
 
