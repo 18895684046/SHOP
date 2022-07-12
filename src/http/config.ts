@@ -5,9 +5,9 @@ export default {
   // 管理后台
   uniauth: {
     // 获取默认项目信息
-    defaultProject: '/user/defaultProject/:email',
+    defaultProject: '/user/defaultProject',
 
     // 获取项目列表
-    projects: '/projects/:email',
+    projects: '/projects',
   },
 }

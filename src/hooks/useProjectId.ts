@@ -1,5 +1,4 @@
 import { ref, computed } from 'vue'
-import Cookies from 'js-cookie'
 import { useStore, Mutations, Actions } from '@/store'
 import { getProjects } from "@/http/service/uniauth"
 
@@ -21,10 +20,10 @@ const useProjectId = () => {
 
   // 选择项目 回调
   const handleProjectSelected = (projectId: string) => {
-    commit(Mutations.setProjectId, projectId)
+    dispatch(Actions.updateDefaultProjectId, projectId)
   }
 
-  getProjects({ email: Cookies.get('email') }).then(
+  getProjects().then(
     (res: any) => {
       if (res.success) {
         projects.value = res?.data?.map(

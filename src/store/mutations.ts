@@ -9,7 +9,6 @@ export enum Mutations {
 export const mutations = {
   // 设置 projectId
   [Mutations.setProjectId](state: State, projectId: string) {
-    sessionStorage.setItem('projectId', projectId)
     state.projectId = projectId
   }
 }

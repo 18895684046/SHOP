@@ -11,27 +11,26 @@ const {
 } = config
 
 // 获取用户默认项目信息
-export const getDefaultProject = (
-  params: {
-    email: string
-  }
-) => {
+export const getDefaultProject = () => {
   return request({
     url: preUrl + defaultProject,
     method: 'get',
-    params
+  })
+}
+
+// 更新默认项目id
+export const updateDefaultProject = (data: { projectId: string }) => {
+  return request({
+    url: preUrl + defaultProject,
+    method: 'put',
+    data
   })
 }
 
 // 获取所有项目信息
-export const getProjects = (
-  params: {
-    email: string
-  }
-) => {
+export const getProjects = () => {
   return request({
     url: preUrl + projects,
-    method: 'get',
-    params
+    method: 'get'
   })
 }
