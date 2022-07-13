@@ -8,10 +8,13 @@ import useProjectId from '@/hooks/useProjectId'
 
 const services = useNavbar()
 const {
+  init,
   projectId,
   projects,
   handleProjectSelected
 } = useProjectId()
+
+init()
 </script>
 
 <template>
