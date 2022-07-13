@@ -12,7 +12,7 @@ export default defineConfig({
       libs: [{
         libraryName: 'vant',
         esModule: true,
-        resolveStyle: name => `../es/${name}/style`
+        resolveStyle: name => `vant/es/${name}/style/index`
       }]
     }),
   ],
