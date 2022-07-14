@@ -6,8 +6,23 @@ body {
   padding: 0;
   height: 100vh;
   background: $bg-white-gray;
-  background: url(https://s1.hdslb.com/bfs/static/stone-free/dyn-home/assets/background.png) top/cover no-repeat fixed;
+  // background: url(https://s1.hdslb.com/bfs/static/stone-free/dyn-home/assets/background.png) top/cover no-repeat fixed;
   font-family: sans-serif;
+  
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,.2);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #ddd;
 }
 
 a {

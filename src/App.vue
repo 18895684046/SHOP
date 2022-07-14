@@ -50,9 +50,16 @@ nextTick(() => init())
 </template>
 
 <style lang="scss">
-
-
 @import "@/styles/global.scss";
+
+.main {
+  height: calc(100vh - 50px);
+  overflow: auto;
+  background-size: 100% 100%;
+  background-image: url(https://s1.hdslb.com/bfs/static/stone-free/dyn-home/assets/background.png);
+  background-position: 50%;
+  background-attachment: fixed;
+}
 
 @media only screen and (min-width: 1100px) {
   .n-provider {
@@ -61,10 +68,6 @@ nextTick(() => init())
 
   .hd-mobile {
     display: none;
-  }
-
-  .main {
-    height: calc(100vh - 76px);
   }
 }
 
@@ -75,10 +78,6 @@ nextTick(() => init())
 
   .hd-pc {
     display: none;
-  }
-
-  .main {
-    height: calc(100vh - 76px);
   }
 }
 </style>

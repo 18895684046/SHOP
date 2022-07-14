@@ -50,7 +50,7 @@ const avatar = Cookies.get('avatar')
 const nickname = (Cookies.get('fullname') || '').replace(/\+/g, ' ')
 
 const linkToAdmin = () => {
-  window.location.href = mainStageUrl + '/uniauth'
+  window.location.href = mainStageUrl + `/uniauth/project/${props.projectId}`
 }
 </script>
 
