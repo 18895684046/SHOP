@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { NConfigProvider } from 'naive-ui'
+import { nextTick } from 'vue'
+import { NConfigProvider, NLoadingBarProvider } from 'naive-ui'
 import Header from '@/components/Header/index.vue'
 import MobileHeader from '@/mobileComponents/mobileHeader/index.vue'
 import { themeOverrides } from '@/theme'
+import LoadingBarApi from '@/components/LoadingBarApi/index.vue'
 import useNavbar from '@/hooks/useNavbar'
 import useProjectId from '@/hooks/useProjectId'
 
@@ -14,11 +16,15 @@ const {
   handleProjectSelected
 } = useProjectId()
 
-init()
+nextTick(() => init())
 </script>
 
 <template>
   <NConfigProvider class="n-provider" :theme-overrides="themeOverrides">
+    <NLoadingBarProvider>
+      <LoadingBarApi />
+    </NLoadingBarProvider>
+
     <div class="hd-mobile">
       <MobileHeader 
         :services="services" 
@@ -36,7 +42,7 @@ init()
         :handleProjectSelected="handleProjectSelected"
       />
     </div>
-
+    
     <div class="main">
       <router-view></router-view>
     </div>

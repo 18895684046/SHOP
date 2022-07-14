@@ -16,12 +16,16 @@ const useProjectId = () => {
   const projectId = computed<string>(() => getters.projectId)
 
   const init = () => {
+    (window as any).$loadingBar.start()
+
     // 设置默认 projectId
     dispatch(Actions.setDefaultProjectId)
 
     getProjects().then(
       (res: any) => {
         if (res.success) {
+          (window as any).$loadingBar.finish()
+
           projects.value = res?.data?.map(
             (p: Project) => ({
               label: `${p?.projectId}  ${p?.projectName}`,
