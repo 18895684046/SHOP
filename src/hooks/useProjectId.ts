@@ -21,7 +21,7 @@ const useProjectId = () => {
     // 设置默认 projectId
     dispatch(Actions.setDefaultProjectId)
 
-    getProjects().then(
+    getProjects({ appName: 'default' }).then(
       (res: any) => {
         if (res.success) {
           (window as any).$loadingBar.finish()

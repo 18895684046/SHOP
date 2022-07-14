@@ -8,6 +8,6 @@ export default {
     defaultProject: '/user/defaultProject',
 
     // 获取项目列表
-    projects: '/projects',
+    projects: '/user/:appName/projects',
   },
 }

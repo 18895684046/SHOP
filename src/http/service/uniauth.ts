@@ -28,9 +28,10 @@ export const updateDefaultProject = (data: { projectId: string }) => {
 }
 
 // 获取所有项目信息
-export const getProjects = () => {
+export const getProjects = (params: { appName: string }) => {
   return request({
     url: preUrl + projects,
-    method: 'get'
+    method: 'get',
+    params
   })
 }
