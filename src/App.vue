@@ -60,10 +60,11 @@ nextTick(() => init())
 .main {
   height: calc(100vh - 50px);
   overflow: auto;
-  background-size: 100% 100%;
+  background-size: 100% 56.25vw;
   background-image: url(https://s1.hdslb.com/bfs/static/stone-free/dyn-home/assets/background.png);
-  background-position: 50%;
+  background-position: top;
   background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 @media only screen and (min-width: 1100px) {
