@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { NCarousel, NCard, NNumberAnimation, NSpace, NSlider, NDataTable, NDescriptions, NDescriptionsItem } from 'naive-ui'
-import { h, ref } from 'vue'
+import { h, ref, watch } from 'vue'
+import { NCarousel, NCard, NNumberAnimation, NSpace, NSpin, NSlider, NDataTable, NDescriptions, NDescriptionsItem } from 'naive-ui'
 import type { DataTableColumns } from 'naive-ui'
+import useProjectId from '@/hooks/useProjectId'
 
 type RowData = {
   key: number
@@ -69,6 +70,12 @@ const data = Array.from({ length: 46 }).map((_, index) => ({
 const columns = createColumns()
 const pagination = { pageSize: 10 }
 const height = ref(300)
+
+const { projectId } = useProjectId()
+
+watch(projectId, () => {
+  (window as any).$message.loading('正在加载')
+})
 </script>
 
 <template>

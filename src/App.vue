@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { nextTick } from 'vue'
-import { NConfigProvider, NLoadingBarProvider } from 'naive-ui'
+import { NConfigProvider, NLoadingBarProvider, NMessageProvider } from 'naive-ui'
 import Header from '@/components/Header/index.vue'
 import MobileHeader from '@/mobileComponents/mobileHeader/index.vue'
 import { themeOverrides } from '@/theme'
 import LoadingBarApi from '@/components/LoadingBarApi/index.vue'
+import MessageApi from '@/components/MessageApi/index.vue'
 import useNavbar from '@/hooks/useNavbar'
 import useProjectId from '@/hooks/useProjectId'
 
@@ -24,6 +25,10 @@ nextTick(() => init())
     <NLoadingBarProvider>
       <LoadingBarApi />
     </NLoadingBarProvider>
+
+    <NMessageProvider>
+      <MessageApi />
+    </NMessageProvider>
 
     <div class="hd-mobile">
       <MobileHeader 
