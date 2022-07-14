@@ -11,7 +11,8 @@ export const getNavbar = () => {
     url: navbar,
     method: 'get',
     params: {
-      token: 1
+      token: 1,
+      timestamp: new Date().getTime()
     }
   })
 }
