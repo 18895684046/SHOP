@@ -101,7 +101,7 @@ watch(projectId, () => {
       </NSpace>
     </NCard>
 
-    <div style="height: 24px"></div>
+    <div style="height: 8px"></div>
 
     <NDescriptions label-placement="top" bordered :column="6">
       <NDescriptionsItem>

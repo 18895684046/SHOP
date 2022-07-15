@@ -80,6 +80,18 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.hd-mobile-second-tab {
+  .van-cell__title {
+    color: #000;
+  }
+}
+
+.hd-content {
+  .van-cell {
+    padding: 6px 16px;
+  }
+}
+
 .n-base-selection .n-base-selection-label {
   height: 32px;
 }

@@ -1,10 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import Cookies from 'js-cookie'
 import { ConfigProvider, Icon, Popup, Collapse, CollapseItem } from 'vant'
 import { NAvatar, NIcon, NSelect } from 'naive-ui'
 import { PoweroffOutlined, RightOutlined, UserOutlined } from '@vicons/antd'
 import { logout } from '@/utils'
+
+const RouteNameMap: any = {
+  example: '测试服务',
+  example1: '用例管理',
+  example2: '用例执行',
+  example3: '帮助中心'
+}
 
 const props = defineProps<{
   services: any,
@@ -12,6 +20,8 @@ const props = defineProps<{
   projects: any[],
   handleProjectSelected: (value: string) => void
 }>()
+
+const route = useRoute()
 
 // 主站地址
 const mainStageUrl = import.meta.env.VITE_HTTP_BASE_URL as string
@@ -23,6 +33,14 @@ const themeVars = {
 const show = ref<boolean>(false)
 const activeNames = ref<any>([])
 const curTabText = ref<string>('') 
+const avatar = Cookies.get('avatar')
+const nickname = (Cookies.get('fullname') || '').replace(/\+/g, ' ')
+
+watch(route, (r) => {
+  const name: any = r.name
+
+  curTabText.value = RouteNameMap[name]
+})
 
 const setCurTabText = (value: string) => {
   curTabText.value = value
@@ -30,6 +48,10 @@ const setCurTabText = (value: string) => {
 
 const showPopup = () => {
   show.value = true
+}
+
+const closePopup = () => {
+  show.value = false
 }
 
 const hrefTo = (disabled: boolean, url: string) => {
@@ -42,12 +64,6 @@ const handleSubSrvClick = (disabled: boolean, url: string, name: string) => {
   hrefTo(disabled, url)
   setCurTabText(name)
 }
-
-/**
- * 用户栏逻辑分区
- */
-const avatar = Cookies.get('avatar')
-const nickname = (Cookies.get('fullname') || '').replace(/\+/g, ' ')
 
 const linkToAdmin = () => {
   window.location.href = mainStageUrl + `/uniauth/project/${props.projectId}`
@@ -77,9 +93,10 @@ const linkToAdmin = () => {
 
             <Collapse :border="false" v-model="activeNames">
               <CollapseItem 
-                :class="{ 'hd-mobile-active-tab': curTabText === '测试服务' }"
+                :class="['hd-mobile-first-tab', { 'hd-mobile-active-tab': curTabText === '测试服务' }]"
                 @click.stop="setCurTabText('测试服务')"
-                :border="false" title="测试服务"
+                :border="false"
+                title="测试服务"
                 name="100"
               >
                 <CollapseItem
@@ -87,18 +104,19 @@ const linkToAdmin = () => {
                   :border="false" v-for="(service, index) of services"
                   :title="service.name"
                   :name="index"
-                  :class="{ 'hd-mobile-active-tab': curTabText === service.name }"
+                  :class="['hd-mobile-second-tab', { 'hd-mobile-active-tab': curTabText === service.name }]"
                   @click.stop="setCurTabText(service.name)"
                 >
                   <CollapseItem
                     v-for="subSrv of service.subServices"
                     readonly
+                    class="hd-mobile-third-tab"
                     :disabled="subSrv.disabled"
                     :border="false"
                     @click.stop="handleSubSrvClick(subSrv.disabled, subSrv.url, subSrv.name)"
                   >
                     <template #title>
-                      <div>{{ subSrv.name }}</div>
+                      <div class="hd-mobile-third-tab-title">{{ subSrv.name }}</div>
                     </template>
                     <template #right-icon>
                     </template>
@@ -109,12 +127,12 @@ const linkToAdmin = () => {
               <CollapseItem
                 readonly
                 :border="false"
-                :class="{ 'hd-mobile-active-tab': curTabText === '用例管理' }"
+                :class="['hd-mobile-first-tab', { 'hd-mobile-active-tab': curTabText === '用例管理' }]"
                 @click="setCurTabText('用例管理')"
               >
                 <template #title>
                   <div class="link-wrp">
-                    <router-link :to="{ name: 'example1' }">用例管理</router-link>
+                    <router-link @click="closePopup" :to="{ name: 'example1' }">用例管理</router-link>
                   </div>
                 </template>
                 <template #right-icon>
@@ -124,12 +142,12 @@ const linkToAdmin = () => {
               <CollapseItem 
                 readonly
                 :border="false"
-                :class="{ 'hd-mobile-active-tab': curTabText === '用例执行' }"
+                :class="['hd-mobile-first-tab', { 'hd-mobile-active-tab': curTabText === '用例执行' }]"
                 @click="setCurTabText('用例执行')"
               >
                 <template #title>
                   <div class="link-wrp">
-                    <router-link :to="{ name: 'example2' }">用例执行</router-link>
+                    <router-link @click="closePopup" :to="{ name: 'example2' }">用例执行</router-link>
                   </div>
                 </template>
                 <template #right-icon>
@@ -139,12 +157,12 @@ const linkToAdmin = () => {
               <CollapseItem
                 readonly
                 :border="false"
-                :class="{ 'hd-mobile-active-tab': curTabText === '帮助中心' }"
+                :class="['hd-mobile-first-tab', { 'hd-mobile-active-tab': curTabText === '帮助中心' }]"
                 @click="setCurTabText('帮助中心')"
               >
                 <template #title>
                   <div class="link-wrp">
-                    <router-link :to="{ name: 'example3' }">帮助中心</router-link>
+                    <router-link @click="closePopup" :to="{ name: 'example3' }">帮助中心</router-link>
                   </div>
                 </template>
                 <template #right-icon>
