@@ -44,3 +44,6 @@ version-set:
 release:
 	git tag $(VERSION)
 	git push origin $(VERSION)
+
+push-prod:
+	rsync -av dist/ deploy@qagame.bilibili.co:/home/deploy/code/template-web/
