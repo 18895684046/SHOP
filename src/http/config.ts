@@ -9,5 +9,8 @@ export default {
 
     // 获取项目列表
     projects: '/user/:appName/projects',
+
+    // 获取应用权限
+    permissions: '/permissions/:appName/:projectId/user/:email'
   },
 }

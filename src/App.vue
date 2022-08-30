@@ -8,14 +8,24 @@ import LoadingBarApi from '@/components/LoadingBarApi/index.vue'
 import MessageApi from '@/components/MessageApi/index.vue'
 import useNavbar from '@/hooks/useNavbar'
 import useProjectId from '@/hooks/useProjectId'
+import usePermissions from '@/hooks/usePermissions'
 
 const services = useNavbar()
 const {
-  init,
+  initProjectId,
   projectId,
   projects,
   handleProjectSelected
 } = useProjectId()
+
+const {
+  initPermissions,
+} = usePermissions()
+
+const init = () => {
+  initProjectId()
+  initPermissions()
+}
 
 nextTick(() => init())
 </script>
@@ -60,7 +70,7 @@ nextTick(() => init())
 .main {
   height: calc(100vh - 50px);
   overflow: auto;
-  background-size: 100% 56.25vw;
+  background-size: 100% 100%;
   background-image: url(https://s1.hdslb.com/bfs/static/stone-free/dyn-home/assets/background.png);
   background-position: top;
   background-attachment: fixed;

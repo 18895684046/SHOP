@@ -7,7 +7,8 @@ const jwt = Cookies.get('jwt') || ''
 
 const service = axios.create({
   // 当传入的url为绝对路径时 不起作用
-  baseURL: import.meta.env.VITE_HTTP_BASE_URL as string,
+  // baseURL: import.meta.env.VITE_HTTP_BASE_URL as string,
+  baseURL: '/api',
 
   // 测试服需要在header中添加jwt做权限验证
   headers: {

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { h, ref, watch } from 'vue'
-import { NCarousel, NCard, NNumberAnimation, NSpace, NSpin, NSlider, NDataTable, NDescriptions, NDescriptionsItem } from 'naive-ui'
+import { NCarousel, NButton, NCard, NNumberAnimation, NSpace, NSlider, NDataTable, NDescriptions, NDescriptionsItem, NIcon } from 'naive-ui'
 import type { DataTableColumns } from 'naive-ui'
 import useProjectId from '@/hooks/useProjectId'
+import AuthButton from '@/components/AuthButton/index.vue'
+import { UserOutlined } from '@vicons/antd'
 
 type RowData = {
   key: number
@@ -93,6 +95,17 @@ watch(projectId, () => {
       <template #header>
         <NNumberAnimation ref="numberAnimationInstRef" :from="0" :to="45" />
         条数据
+
+        <AuthButton
+        btnAuth="read"
+      >
+        <template #icon>
+          <NIcon>
+            <UserOutlined />
+          </NIcon>
+        </template>
+        这是一个read权限按钮的示例(你可以切换项目试试)
+      </AuthButton>
       </template>
       <NSpace vertical>
         <NSlider v-model:value="height" :min="200" :max="500" :step="100" style="max-width: 180px" />

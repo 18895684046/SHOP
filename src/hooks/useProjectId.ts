@@ -15,7 +15,7 @@ const useProjectId = () => {
   const projects = ref<Project[]>([])
   const projectId = computed<string>(() => getters.projectId)
 
-  const init = () => {
+  const initProjectId = () => {
     (window as any).$loadingBar.start()
 
     // 设置默认 projectId
@@ -43,7 +43,7 @@ const useProjectId = () => {
   }
 
   return {
-    init,
+    initProjectId,
     projectId,
     projects,
     handleProjectSelected

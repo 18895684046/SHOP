@@ -20,5 +20,15 @@ export default defineConfig({
     alias: {
       '@': '/src/',
     }
+  },
+  // 代理
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://qagame-dev.bilibili.co/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   }
 })
