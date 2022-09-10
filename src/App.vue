@@ -1,73 +1,19 @@
 <script setup lang="ts">
-import { nextTick } from 'vue'
-import { NConfigProvider, NLoadingBarProvider, NMessageProvider } from 'naive-ui'
-import Header from '@/components/Header/index.vue'
-import MobileHeader from '@/mobileComponents/mobileHeader/index.vue'
-import { themeOverrides } from '@/theme'
-import LoadingBarApi from '@/components/LoadingBarApi/index.vue'
-import MessageApi from '@/components/MessageApi/index.vue'
 import useNavbar from '@/hooks/useNavbar'
 import useProjectId from '@/hooks/useProjectId'
-import usePermissions from '@/hooks/usePermissions'
 
-const services = useNavbar()
-const {
-  initProjectId,
-  projectId,
-  projects,
-  handleProjectSelected
-} = useProjectId()
-
-const {
-  initPermissions,
-} = usePermissions()
-
-const init = () => {
-  initProjectId()
-  initPermissions()
-}
-
-nextTick(() => init())
 </script>
 
 <template>
-  <NConfigProvider class="n-provider" :theme-overrides="themeOverrides">
-    <NLoadingBarProvider>
-      <LoadingBarApi />
-    </NLoadingBarProvider>
-
-    <NMessageProvider>
-      <MessageApi />
-    </NMessageProvider>
-
-    <div class="hd-mobile">
-      <MobileHeader 
-        :services="services" 
-        :projectId="projectId" 
-        :projects="projects" 
-        :handleProjectSelected="handleProjectSelected" 
-      />
-    </div>
-
-    <div class="hd-pc">
-      <Header
-        :services="services" 
-        :projectId="projectId" 
-        :projects="projects" 
-        :handleProjectSelected="handleProjectSelected"
-      />
-    </div>
-    
     <div class="main">
       <router-view></router-view>
     </div>
-  </NConfigProvider>
 </template>
 
 <style lang="scss">
 @import "@/styles/global.scss";
 
-.main {
+import .main {
   height: calc(100vh - 50px);
   overflow: auto;
   background-size: 100% 100%;
