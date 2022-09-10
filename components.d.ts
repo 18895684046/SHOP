@@ -13,5 +13,6 @@ declare module '@vue/runtime-core' {
     VanIcon: typeof import('vant/es')['Icon']
   }
 }
+declare module 'vue-router'
 
 export {}

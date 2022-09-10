@@ -11,15 +11,24 @@ const service = axios.create({
   // baseURL: '/api',
 
   // 测试服需要在header中添加jwt做权限验证
-  headers: {
-    Authorization: 'Bearer ' + jwt
-  },
+  // headers: {
+  //   Authorization: 'Bearer ' + jwt
+  // },
 
   // 允许跨域携带cookie
   withCredentials: true,
 
   // 超时时间60秒
   timeout: 60000,
+})
+
+// 拦截器 处理请求
+service.interceptors.request.use(config => {
+  // config 请求的信息
+ return config // 将配置完成的config对象返回出去 如果不返回 请求则不会进行
+}, err => {
+ // 请求发生错误时的处理 抛出错误
+Promise.reject(err)
 })
 
 // 拦截器 处理响应
@@ -42,13 +51,13 @@ service.interceptors.response.use(
 
     if (RELOGIN_CODES.includes(errcode) && status === 401) {
       // 清除cookie重新登录
-      Cookies.remove('fullname')
-      Cookies.remove('email')
-      window.location.href = `${import.meta.env.VITE_LOGIN_URL}?next=${Base64.encode(window.location.href)}`
+      // Cookies.remove('fullname')
+      // Cookies.remove('email')
+      // window.location.href = `${import.meta.env.VITE_LOGIN_URL}?next=${Base64.encode(window.location.href)}`
     } else if (NO_PERMISSION_CODES.includes(errcode)) {
       // todo 在此添加项目无权限时处理逻辑
 
-      window.location.href = `/#/no_permission`
+      // window.location.href = `/#/no_permission`
     } else {
       msg && console.error(msg)
     }
