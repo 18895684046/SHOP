@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Cookies from 'js-cookie'
 import { Base64 } from 'js-base64'
 
@@ -77,7 +77,7 @@ const routes: RouteRecordRaw[] = [
 
 const router = createRouter({
   // base url 在此定义项目的公共路由前缀 这里我用测试用例举例
-  history: createWebHistory('/template/'),
+  history: createWebHashHistory('/template/'),
   routes,
 })
 
