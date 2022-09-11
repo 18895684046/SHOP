@@ -2,12 +2,25 @@
 import useNavbar from '@/hooks/useNavbar'
 import useProjectId from '@/hooks/useProjectId'
 
+const themeVars = {
+  rateIconFullColor: '#07c160',
+  sliderBarHeight: '4px',
+  sliderButtonWidth: '20px',
+  sliderButtonHeight: '20px',
+  sliderActiveBackgroundColor: '#07c160',
+  buttonPrimaryBorderColor: '#07c160',
+  buttonPrimaryBackgroundColor: '#07c160',
+  actionSheetMaxHeight: '60%'
+}
+
 </script>
 
 <template>
-    <div class="main">
-      <router-view></router-view>
-    </div>
+  <!-- <van-config-provider :theme-vars="themeVars"> -->
+  <div class="main">
+    <router-view></router-view>
+  </div>
+  <!-- </van-config-provider> -->
 </template>
 
 <style lang="scss">

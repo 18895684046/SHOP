@@ -3,7 +3,9 @@ import App from './App.vue'
 import { store, key } from './store'
 import router from './router'
 import {Button,Calendar,Col, Row,Field, CellGroup,Icon,Swipe, SwipeItem,
-    Tabbar, TabbarItem,Card,NavBar,Sidebar, SidebarItem,Empty,Image as VanImage
+    Tabbar, TabbarItem,Card,NavBar,Sidebar, SidebarItem,Empty,Image as VanImage,
+    ActionSheet,RadioGroup, Radio, Tab, Tabs,Checkbox, CheckboxGroup,Tag ,
+    Stepper 
 } from 'vant'
 
 const app = createApp(App)
@@ -15,7 +17,13 @@ app.use(Col).use(Row).use(Field).use(CellGroup).use(Icon).use(Swipe)
 .use(Sidebar)
 .use(SidebarItem)
 .use(Empty)
-.use(VanImage);
+.use(VanImage).use(ActionSheet).use(RadioGroup).use(Radio)
+.use(Tab).use(Tabs)
+.use(Checkbox).use(CheckboxGroup)
+.use(Tag)
+.use(Stepper)
+
+
 
 app.use(store, key)
 

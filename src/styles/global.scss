@@ -8,7 +8,7 @@ body {
   background: $bg-white-gray;
   // background: url(https://s1.hdslb.com/bfs/static/stone-free/dyn-home/assets/background.png) top/cover no-repeat fixed;
   font-family: sans-serif;
-  
+
 }
 
 ::-webkit-scrollbar {
@@ -17,7 +17,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,.2);
+  background-color: rgba(0, 0, 0, .2);
   border-radius: 8px;
 }
 
@@ -29,7 +29,12 @@ a {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
 }
@@ -54,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .table-row-selected {
   td {
-    color: $bili-blue !important;
+    color: $bili-blue  !important;
 
     &:first-child {
       border-left: 3px solid $bili-blue;
