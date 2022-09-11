@@ -5,7 +5,7 @@ import router from './router'
 import {Button,Calendar,Col, Row,Field, CellGroup,Icon,Swipe, SwipeItem,
     Tabbar, TabbarItem,Card,NavBar,Sidebar, SidebarItem,Empty,Image as VanImage,
     ActionSheet,RadioGroup, Radio, Tab, Tabs,Checkbox, CheckboxGroup,Tag ,
-    Stepper 
+    Stepper ,SubmitBar 
 } from 'vant'
 
 const app = createApp(App)
@@ -22,6 +22,7 @@ app.use(Col).use(Row).use(Field).use(CellGroup).use(Icon).use(Swipe)
 .use(Checkbox).use(CheckboxGroup)
 .use(Tag)
 .use(Stepper)
+.use(SubmitBar)
 
 
 

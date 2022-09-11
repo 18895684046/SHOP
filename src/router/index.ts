@@ -49,7 +49,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/cart',
     name: 'cart',
-    component: Cart
+    component: Cart,
+    meta: {
+      keepAlive: true,
+    },
   },
   {
     path: '/login',

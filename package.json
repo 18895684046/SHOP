@@ -5,7 +5,7 @@
   "author": "zz",
   "scripts": {
     "start": "vite",
-    "build": "vue-tsc --noEmit && vite build --mode production",
+    "build": "vite build --mode production",
     "build-dev": "vue-tsc --noEmit && vite build --mode development",
     "serve": "vite preview"
   },

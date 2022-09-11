@@ -9,10 +9,9 @@
     </div>
     <div class="swipe-wrap">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
+        <van-swipe-item v-for="swipe in  swipeList">
+          <img :src="swipe?.imgUrl" alt="">
+        </van-swipe-item>
       </van-swipe>
     </div>
     <div class="classify-wrap">
@@ -89,6 +88,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import TabbarCom from '@/components/Tabbar.vue'
+import { swipeList } from './constant'
 
 const valueText = ref<string>('')
 
@@ -129,12 +129,20 @@ const valueText = ref<string>('')
 }
 
 .swipe-wrap {
+  margin-top: 40px;
+
   .my-swipe .van-swipe-item {
     color: #fff;
     font-size: 20px;
     line-height: 150px;
     text-align: center;
     background-color: #39a9ed;
+    width: 414px;
+    height: 155px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
@@ -144,7 +152,7 @@ const valueText = ref<string>('')
   width: 375px;
   height: 160px;
   position: relative;
-  background: green;
+  // background: green;
 
   .singe-classify {
     width: 20%;

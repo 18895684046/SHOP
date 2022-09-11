@@ -12,10 +12,11 @@
             <span>跨店满减(0)</span>
         </p>
         <div class="shop-list">
-            <div class="section-shop">
+            <!-- {{shopLists}} -->
+            <div v-for="item in shopLists" class="section-shop">
                 <div class="header-wrap">
                     <div>
-                        <van-checkbox v-model="allCheckedShop">
+                        <van-checkbox>
                             <span class="header-title">爱贝贝珠宝旗舰店</span>
                         </van-checkbox>
                     </div>
@@ -25,7 +26,8 @@
                 </div>
                 <div class="item-single">
                     <div>
-                        <van-checkbox v-model="allCheckedShop"></van-checkbox>
+                        <!-- <van-checkbox v-model="allCheckedShop"></van-checkbox> -->
+                        <van-checkbox v-model="item.curChecked"></van-checkbox>
                     </div>
                     <div class="vetti-wrap">
                         <div class="img-wrap">
@@ -43,15 +45,21 @@
                                 <span class="service">选服务</span>
                             </div>
                             <div class="num-price">
-                                <div>¥ <em class="int">28</em></div>
+                                <div>¥ <em class="int">{{item?.price}}</em></div>
                                 <div>
-                                    <van-stepper v-model="numValue" theme="round" class="addNum" disable-input />
+                                    <van-stepper v-model="item.curNum" :name="item?.id" theme="round" class="addNum"
+                                        disable-input />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="submit-wrap">
+            <van-submit-bar :price="totalPrice" button-text="提交订单" @submit="onSubmit">
+                <van-checkbox v-model="checkedAll">全选</van-checkbox>
+            </van-submit-bar>
         </div>
     </div>
     <TabbarCom />
@@ -60,11 +68,56 @@
 <script setup lang="ts">
 import TabbarCom from '@/components/Tabbar.vue'
 import TitleCpm from '@/components/Title.vue';
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { nanoid } from 'nanoid'
+import { computed } from '@vue/reactivity';
 
 const isLogin = ref<boolean>(true)
 const allCheckedShop = ref<boolean>(false)
 const numValue = ref<number>(1)
+const checkedAll = ref<boolean>(false)
+const shopLists = ref<any>([
+    {
+        id: nanoid(),
+        name: '手镯',
+        price: 28
+    },
+    {
+        id: nanoid(),
+        name: '鲜花',
+        price: 245
+    },
+    {
+        id: nanoid(),
+        name: '零食',
+        price: 65
+    },
+])
+shopLists.value = shopLists.value.map(item => {
+    return {
+        ...item,
+        curChecked: false,
+        curNum: 1,
+    }
+})
+
+const onSubmit = () => alert('点击按钮');
+
+watch(() => shopLists, () => {
+    console.log(shopLists, 'shopLists');
+    const allNums = shopLists?.value?.filter(it => it?.hasOwnProperty('curNum'))
+        ?.map(shop => shop?.curNum)
+    console.log(allNums, 'allNums');
+
+}, { deep: true })
+
+const totalPrice = computed(() => {
+    const sumPrice = shopLists.value?.filter(shop => shop?.curChecked).reduce((res, item) => {
+        return res += item.price * item.curNum;
+    }, 0)
+    // vant 的 price 默认单位是 分，需要 * 100
+    return sumPrice * 100
+})
 
 </script>
 <style scoped lang="scss">
@@ -87,18 +140,27 @@ const numValue = ref<number>(1)
         border-top: 2px solid rgb(211, 208, 208);
         background: #fff;
         height: 50px;
-
     }
 }
 
 .all-carts {
     padding-top: 45px;
+    padding-bottom: 100px;
+
+    .submit-wrap {
+        :deep(.van-submit-bar) {
+            bottom: 50px;
+            background: hsla(0, 0%, 100%, .95);
+            box-shadow: 2px 2px 4px #D9D9D9
+        }
+    }
 
     .shop-list {
         .section-shop {
             padding: 15px;
             background: #fff;
             border-radius: 10px;
+            margin-top: 20px;
 
             .header-wrap {
                 display: flex;
