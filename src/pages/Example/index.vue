@@ -89,9 +89,14 @@
 import { ref } from 'vue'
 import TabbarCom from '@/components/Tabbar.vue'
 import { swipeList } from './constant'
+import { getGoodsList } from '@/http/service/goods'
 
 const valueText = ref<string>('')
 
+  getGoodsList({keyWord:"ceshi"}).then(res =>{
+    console.log(res,'rrr');
+    
+  })
 
 </script>
 
@@ -139,6 +144,7 @@ const valueText = ref<string>('')
     background-color: #39a9ed;
     width: 414px;
     height: 155px;
+
     img {
       width: 100%;
       height: 100%;

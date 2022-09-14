@@ -6,8 +6,7 @@ const preUrl = '/api/uniauth'
 const {
   uniauth: {
     defaultProject,
-    projects,
-    permissions
+    projects
   }
 } = config
 
@@ -32,21 +31,6 @@ export const updateDefaultProject = (data: { projectId: string }) => {
 export const getProjects = (params: { appName: string }) => {
   return request({
     url: preUrl + projects,
-    method: 'get',
-    params
-  })
-}
-
-// 获取用户权限
-export const getPermissions = (
-  params: {
-    appName: string,
-    projectId: string,
-    email: string
-  }
-) => {
-  return request({
-    url: preUrl + permissions,
     method: 'get',
     params
   })

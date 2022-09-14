@@ -22,13 +22,13 @@ export default defineConfig({
     }
   },
   // 代理
-  // server: {
-  //   proxy: {
-  //     '/api': {
-  //       target: 'https://qagame-dev.bilibili.co/',
-  //       changeOrigin: true,
-  //       rewrite: (path) => path.replace(/^\/api/, '')
-  //     }
-  //   }
-  // }
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://mall.werfamily.fun/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })
