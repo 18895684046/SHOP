@@ -93,10 +93,10 @@ import { getGoodsList } from '@/http/service/goods'
 
 const valueText = ref<string>('')
 
-  getGoodsList({keyWord:"ceshi"}).then(res =>{
-    console.log(res,'rrr');
-    
-  })
+// getGoodsList({ keyWord: "ceshi" }).then(res => {
+//   console.log(res, 'rrr');
+
+// })
 
 </script>
 
