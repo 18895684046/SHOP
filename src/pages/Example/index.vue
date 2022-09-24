@@ -90,9 +90,13 @@ import { ref } from 'vue'
 import TabbarCom from '@/components/Tabbar.vue'
 import { swipeList } from './constant'
 import { getGoodsList } from '@/http/service/goods'
+import axios from 'axios'
 
 const valueText = ref<string>('')
 
+  axios.get('http://127.0.0.1:5000/list').then(res =>{
+    console.log(res,'ggg');
+  })
 // getGoodsList({ keyWord: "ceshi" }).then(res => {
 //   console.log(res, 'rrr');
 
