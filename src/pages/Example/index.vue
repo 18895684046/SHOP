@@ -94,9 +94,9 @@ import axios from 'axios'
 
 const valueText = ref<string>('')
 
-  axios.get('http://127.0.0.1:5000/list').then(res =>{
-    console.log(res,'ggg');
-  })
+  // axios.get('http://127.0.0.1:5000/list').then(res =>{
+  //   console.log(res,'ggg');
+  // })
 // getGoodsList({ keyWord: "ceshi" }).then(res => {
 //   console.log(res, 'rrr');
 
