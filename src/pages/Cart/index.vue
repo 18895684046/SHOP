@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="submit-wrap">
-            <van-submit-bar :price="totalPrice" button-text="提交订单" @submit="onSubmit">
+            <van-submit-bar :price="totalPrice" button-text="去结算" @submit="onSubmit">
                 <van-checkbox v-model="checkedAll">全选</van-checkbox>
             </van-submit-bar>
         </div>
@@ -71,6 +71,7 @@ import TitleCpm from '@/components/Title.vue';
 import { ref, watch } from 'vue'
 import { nanoid } from 'nanoid'
 import { computed } from '@vue/reactivity';
+import router from '@/router';
 
 const isLogin = ref<boolean>(true)
 const allCheckedShop = ref<boolean>(false)
@@ -93,7 +94,7 @@ const shopLists = ref<any>([
         price: 65
     },
 ])
-shopLists.value = shopLists.value.map(item => {
+shopLists.value = shopLists.value.map((item: any) => {
     return {
         ...item,
         curChecked: false,
@@ -101,18 +102,20 @@ shopLists.value = shopLists.value.map(item => {
     }
 })
 
-const onSubmit = () => alert('点击按钮');
+const onSubmit = () => {
+    router.push('/orderbase')
+}
 
 watch(() => shopLists, () => {
     console.log(shopLists, 'shopLists');
-    const allNums = shopLists?.value?.filter(it => it?.hasOwnProperty('curNum'))
-        ?.map(shop => shop?.curNum)
+    const allNums = shopLists?.value?.filter((it: { hasOwnProperty: (arg0: string) => any; }) => it?.hasOwnProperty('curNum'))
+        ?.map((shop: { curNum: any; }) => shop?.curNum)
     console.log(allNums, 'allNums');
 
 }, { deep: true })
 
 const totalPrice = computed(() => {
-    const sumPrice = shopLists.value?.filter(shop => shop?.curChecked).reduce((res, item) => {
+    const sumPrice = shopLists.value?.filter((shop: { curChecked: any; }) => shop?.curChecked).reduce((res: number, item: { price: number; curNum: number; }) => {
         return res += item.price * item.curNum;
     }, 0)
     // vant 的 price 默认单位是 分，需要 * 100

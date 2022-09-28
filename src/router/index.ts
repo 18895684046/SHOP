@@ -19,6 +19,12 @@ const Login = () => import('@/pages/Login/index.vue')
 //  注册页面
 const Registe = () => import('@/pages/Registe/index.vue')
 
+//  订单基本信息
+const OrderBase = () => import('@/pages/OrderBase/index.vue')
+
+//  收货地址
+const ShipAddress = () => import('@/pages/ShipAddress/index.vue')
+
 
 const routes: RouteRecordRaw[] = [
   {
@@ -64,6 +70,17 @@ const routes: RouteRecordRaw[] = [
     name: 'registe',
     component: Registe
   },
+  {
+    path: '/orderbase',
+    name: 'orderbase',
+    component: OrderBase
+  },
+  {
+    path: '/shipaddress',
+    name: 'shipaddress',
+    component: ShipAddress
+  },
+  
   {
     path: '/',
     redirect: '/example'
