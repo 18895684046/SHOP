@@ -14,6 +14,7 @@
         </van-swipe-item>
       </van-swipe>
     </div>
+    
     <div class="classify-wrap">
       <div class="singe-classify">
         <img
@@ -91,8 +92,14 @@ import TabbarCom from '@/components/Tabbar.vue'
 import { swipeList } from './constant'
 import { getGoodsList } from '@/http/service/goods'
 import axios from 'axios'
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n()
 
 const valueText = ref<string>('')
+
+// const changeLang = (lang: string) => {
+//   locale.value = lang
+// }
 
   // axios.get('http://127.0.0.1:5000/list').then(res =>{
   //   console.log(res,'ggg');
