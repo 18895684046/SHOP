@@ -51,14 +51,14 @@ const isShowOrEdit = ref<boolean>(true)
 
 const onAdd = () => Toast('新增地址');
 
-const onEdit = (item, index) => {
+const onEdit = (item: any, index: any) => {
     isShowOrEdit.value = false
 }
 
 const searchResult = ref<any[]>([]);
 const onSave = () => Toast('save');
 const onDelete = () => Toast('delete');
-const onChangeDetail = (val) => {
+const onChangeDetail = (val: any) => {
     if (val) {
         searchResult.value = [
             {
