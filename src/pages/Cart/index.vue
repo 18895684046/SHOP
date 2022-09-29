@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="submit-wrap">
-            <van-submit-bar :price="totalPrice" :disabled="!cpmputedSelect" button-text="去结算" @submit="onSubmit">
+            <van-submit-bar :price="totalPrice" :disabled="!cpmputedSelect" button-text="去结算" @click="test">
                 <van-checkbox v-model="checkedAll">全选</van-checkbox>
             </van-submit-bar>
         </div>
@@ -68,11 +68,11 @@
 <script setup lang="ts">
 import TabbarCom from '@/components/Tabbar.vue'
 import TitleCpm from '@/components/Title.vue';
-import { ref, watch } from 'vue'
+import { ref, watch, toRaw } from 'vue'
 import { nanoid } from 'nanoid'
 import { computed } from '@vue/reactivity';
 import router from '@/router';
-
+import { useRouter } from 'vue-router';
 const isLogin = ref<boolean>(true)
 const allCheckedShop = ref<boolean>(false)
 const numValue = ref<number>(1)
@@ -107,11 +107,28 @@ const cpmputedSelect = computed(() => {
     const isSelected = shopLists.value?.some((item: { curChecked: boolean; }) => item.curChecked)
     return isSelected
 })
+const tt = useRouter()
+const test = () => {
+    tt.push({
+        name: 'orderbase',
+        params: {
+            test: 11111
+        }
+    })
+}
 
 const onSubmit = () => {
     // 如果什么都不选那么提交按钮应该置灰
-    if (!cpmputedSelect) return
-    router.push('/orderbase')
+    // if (!cpmputedSelect) return
+    // console.log(shopLists.value, '00');
+    // const selectedList = shopLists.value?.filter((item: { curChecked: boolean; }) => item.curChecked)
+    // console.log(selectedList, 'selectedList');
+    router.push({
+        name: 'orderbase',
+        params: {
+            test: 11111
+        }
+    })
 }
 
 watch(() => shopLists, () => {

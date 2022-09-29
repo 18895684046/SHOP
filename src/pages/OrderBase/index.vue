@@ -10,11 +10,18 @@
 <script setup lang="ts">
 import TitleCpm from '@/components/Title.vue';
 import router from '@/router';
+import { onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+const route = useRoute()
 
 
 const openShipAddress = () => {
     router.push('/shipaddress')
 }
+onMounted(()=>{
+    console.log(route.params.test,'route');
+
+})
 
 </script>
 
