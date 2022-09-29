@@ -21,10 +21,12 @@ import { ref } from 'vue';
 import { Toast } from 'vant';
 import TitleCpm from '@/components/Title.vue';
 import { areaList } from '@vant/area-data';
+import { nanoid } from 'nanoid';
+import {AddressInfo,AddressList} from './interface'
 
 
 const chosenAddressId = ref<string>('1');
-const list = [
+const list = ref<AddressList[]>([
     {
         id: '1',
         name: '张三',
@@ -38,7 +40,7 @@ const list = [
         tel: '1310000000',
         address: '浙江省杭州市拱墅区莫干山路 50 号',
     },
-];
+])
 const disabledList = [
     {
         id: '3',
@@ -56,7 +58,20 @@ const onEdit = (item: any, index: any) => {
 }
 
 const searchResult = ref<any[]>([]);
-const onSave = () => Toast('save');
+const onSave = (val:AddressInfo) => {
+    console.log(val, '11');
+    const { tel, name, addressDetail, province, city, county } = val
+    // 组合地址
+    const addressAll = {
+        id: nanoid(),
+        name,
+        tel,
+        address: `${province}${city}${county}${addressDetail}`
+    }
+    list.value.push(addressAll)
+    isShowOrEdit.value = true
+}
+
 const onDelete = () => Toast('delete');
 const onChangeDetail = (val: any) => {
     if (val) {
@@ -75,7 +90,7 @@ const onChangeDetail = (val: any) => {
 </script>
 
 <style lang="scss" scoped>
-.address-list-wrap{
+.address-list-wrap {
     margin-top: 40px;
 }
 </style>

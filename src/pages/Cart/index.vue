@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="submit-wrap">
-            <van-submit-bar :price="totalPrice" button-text="去结算" @submit="onSubmit">
+            <van-submit-bar :price="totalPrice" :disabled="!cpmputedSelect" button-text="去结算" @submit="onSubmit">
                 <van-checkbox v-model="checkedAll">全选</van-checkbox>
             </van-submit-bar>
         </div>
@@ -77,6 +77,7 @@ const isLogin = ref<boolean>(true)
 const allCheckedShop = ref<boolean>(false)
 const numValue = ref<number>(1)
 const checkedAll = ref<boolean>(false)
+const isSelect = ref<boolean>(false)
 const shopLists = ref<any>([
     {
         id: nanoid(),
@@ -102,7 +103,14 @@ shopLists.value = shopLists.value.map((item: any) => {
     }
 })
 
+const cpmputedSelect = computed(() => {
+    const isSelected = shopLists.value?.some((item: { curChecked: boolean; }) => item.curChecked)
+    return isSelected
+})
+
 const onSubmit = () => {
+    // 如果什么都不选那么提交按钮应该置灰
+    if (!cpmputedSelect) return
     router.push('/orderbase')
 }
 

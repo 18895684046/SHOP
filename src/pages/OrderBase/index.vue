@@ -2,7 +2,7 @@
     <TitleCpm text="填写订单" leftText='返回' />
     <div class="order-wrap">
         <div class="order-address">
-            <span @click="openShipAddress">浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室</span>
+            <span class="order-address-top" @click="openShipAddress">浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室</span>
         </div>
     </div>
 </template>
@@ -16,9 +16,6 @@ const openShipAddress = () => {
     router.push('/shipaddress')
 }
 
-
-
-
 </script>
 
 <style lang="scss" scoped>
@@ -28,6 +25,11 @@ const openShipAddress = () => {
     .order-address {
         margin-top: 40px;
 
+        .order-address-top {
+            font-size: 15px;
+            font-weight: 600;
+            word-spacing: 2px;
+        }
     }
 }
 </style>
