@@ -14,49 +14,13 @@
         </van-swipe-item>
       </van-swipe>
     </div>
-    
+
     <div class="classify-wrap">
-      <div class="singe-classify">
+      <div class="singe-classify" v-for="item in goodsTypes">
         <img
-          src="https://m15.360buyimg.com/mobilecms/jfs/t1/175540/24/19329/6842/60ec0b0aEf35f7384/ec560dbf9b82b90b.png!q70.jpg"
+          :src="item?.iconUrl"
           alt="类别图片">
-        <span>文字描述</span>
-      </div>
-      <div class="singe-classify">
-        <img
-          src="https://m15.360buyimg.com/mobilecms/jfs/t1/175540/24/19329/6842/60ec0b0aEf35f7384/ec560dbf9b82b90b.png!q70.jpg"
-          alt="类别图片">
-        <span>文字描述</span>
-      </div>
-      <div class="singe-classify">
-        <img
-          src="https://m15.360buyimg.com/mobilecms/jfs/t1/175540/24/19329/6842/60ec0b0aEf35f7384/ec560dbf9b82b90b.png!q70.jpg"
-          alt="类别图片">
-        <span>文字描述</span>
-      </div>
-      <div class="singe-classify">
-        <img
-          src="https://m15.360buyimg.com/mobilecms/jfs/t1/175540/24/19329/6842/60ec0b0aEf35f7384/ec560dbf9b82b90b.png!q70.jpg"
-          alt="类别图片">
-        <span>文字描述</span>
-      </div>
-      <div class="singe-classify">
-        <img
-          src="https://m15.360buyimg.com/mobilecms/jfs/t1/175540/24/19329/6842/60ec0b0aEf35f7384/ec560dbf9b82b90b.png!q70.jpg"
-          alt="类别图片">
-        <span>文字描述</span>
-      </div>
-      <div class="singe-classify">
-        <img
-          src="https://m15.360buyimg.com/mobilecms/jfs/t1/175540/24/19329/6842/60ec0b0aEf35f7384/ec560dbf9b82b90b.png!q70.jpg"
-          alt="类别图片">
-        <span>文字描述</span>
-      </div>
-      <div class="singe-classify">
-        <img
-          src="https://m15.360buyimg.com/mobilecms/jfs/t1/175540/24/19329/6842/60ec0b0aEf35f7384/ec560dbf9b82b90b.png!q70.jpg"
-          alt="类别图片">
-        <span>文字描述</span>
+        <span>{{item?.text}}</span>
       </div>
     </div>
     <div class="card-wrap">
@@ -89,25 +53,22 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import TabbarCom from '@/components/Tabbar.vue'
-import { swipeList } from './constant'
-import { getGoodsList } from '@/http/service/goods'
-import axios from 'axios'
-import { useI18n } from 'vue-i18n'
-const { locale } = useI18n()
+import { getSwipeList, getGoodsType } from './service/index'
 
 const valueText = ref<string>('')
+const swipeList = ref<any[]>([])
+const goodsTypes = ref<any[]>([])
+getSwipeList().then(res => {
+  console.log(res, '11');
+  const { data } = res
+  swipeList.value = data
+})
 
-// const changeLang = (lang: string) => {
-//   locale.value = lang
-// }
+getGoodsType().then(res => {
+  console.log(res, '00');
+  goodsTypes.value = res?.data
+})
 
-  // axios.get('http://127.0.0.1:5000/list').then(res =>{
-  //   console.log(res,'ggg');
-  // })
-// getGoodsList({ keyWord: "ceshi" }).then(res => {
-//   console.log(res, 'rrr');
-
-// })
 
 </script>
 
@@ -181,6 +142,7 @@ const valueText = ref<string>('')
     img {
       height: 44px;
       width: 44px;
+      border-radius: 10px;
     }
 
   }

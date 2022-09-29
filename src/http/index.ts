@@ -14,10 +14,8 @@ const service = axios.create({
   // headers: {
   //   Authorization: 'Bearer ' + jwt
   // },
-
   // 允许跨域携带cookie
-  withCredentials: true,
-
+  // withCredentials: true,
   // 超时时间60秒
   timeout: 60000,
 })

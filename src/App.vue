@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import useNavbar from '@/hooks/useNavbar'
 import useProjectId from '@/hooks/useProjectId'
+import axios from 'axios';
 import { useRoute } from "vue-router";
 import { useI18n } from 'vue-i18n'
 const { locale } = useI18n()
@@ -15,14 +16,16 @@ const themeVars = {
   buttonPrimaryBackgroundColor: '#07c160',
   actionSheetMaxHeight: '60%'
 }
-const changeLang = (language: string) =>{
+const changeLang = (language: string) => {
   locale.value = language;
 }
+
+
 </script>
 
 <template>
   <!-- <van-config-provider :theme-vars="themeVars"> -->
-  <div class="main" >
+  <div class="main">
     <!-- <div class="menu" style="position: absolute;z-index: 9999;">
         <div class="menu-item" @click="changeLang('en')">English</div>
         <div class="menu-item" @click="changeLang('zh')">中文</div>
