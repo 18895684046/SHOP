@@ -1,10 +1,11 @@
 {
   "name": "shop",
   "version": "0.0.1",
-  "description": "业余时间联系项目",
+  "description": "业余时间练习项目",
   "author": "zz",
   "scripts": {
     "start": "vite",
+    "host": "vite --host",
     "build": "vite build --mode production",
     "build-dev": "vue-tsc --noEmit && vite build --mode development",
     "serve": "vite preview"
