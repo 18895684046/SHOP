@@ -11,6 +11,10 @@ body {
 
 }
 
+:root {
+  --van-radius: 20px
+}
+
 ::-webkit-scrollbar {
   height: 8px;
   width: 8px;
@@ -59,7 +63,7 @@ h6 {
 
 .table-row-selected {
   td {
-    color: $bili-blue  !important;
+    color: $bili-blue !important;
 
     &:first-child {
       border-left: 3px solid $bili-blue;

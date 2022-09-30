@@ -1,11 +1,9 @@
 <template>
   <div class="container">
     <div class="hearder-wrap">
-      <div class="icon-wrap">
-        <van-icon name="location-o" />
+      <div class="header-search-wrap">
+        <van-search v-model="value" show-action placeholder="请输入搜索关键词" @focus="searchFocus" @search="onSearch" @cancel="onCancel" />
       </div>
-      <van-field class="search-inp" v-model="valueText" label="" left-icon="search" placeholder="搜索" />
-      <span class="login-text">登录</span>
     </div>
     <div class="swipe-wrap">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
@@ -17,9 +15,7 @@
 
     <div class="classify-wrap">
       <div class="singe-classify" v-for="item in goodsTypes">
-        <img
-          :src="item?.iconUrl"
-          alt="类别图片">
+        <img :src="item?.iconUrl" alt="类别图片">
         <span>{{item?.text}}</span>
       </div>
     </div>
@@ -52,12 +48,20 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router';
+import { Toast, ToastOptions } from 'vant';
+
 import TabbarCom from '@/components/Tabbar.vue'
 import { getSwipeList, getGoodsType } from './service/index'
 
+const router = useRouter()
 const valueText = ref<string>('')
 const swipeList = ref<any[]>([])
 const goodsTypes = ref<any[]>([])
+const value = ref<string>('');
+const onSearch = (val: string | ToastOptions | undefined) => Toast(val);
+const onCancel = () => Toast('取消');
+
 getSwipeList().then(res => {
   console.log(res, '11');
   const { data } = res
@@ -68,6 +72,10 @@ getGoodsType().then(res => {
   console.log(res, '00');
   goodsTypes.value = res?.data
 })
+const searchFocus = () =>{
+  console.log('11');
+  router.push('/searchtags')
+}
 
 
 </script>
@@ -75,12 +83,26 @@ getGoodsType().then(res => {
 <style lang="scss" scoped>
 .hearder-wrap {
   display: flex;
-  background: red;
   position: fixed;
+  background: rgb(247, 248, 250, );
   z-index: 999;
   top: 0px;
   right: 0px;
   left: 0px;
+
+  .header-search-wrap {
+    width: 100%;
+    padding: 4px 0px;
+
+    .van-search {
+      padding: 0px;
+    }
+
+    :deep(.van-search__content) {
+      height: 100%;
+      border-radius: var(--van-radius);
+    }
+  }
 
   .icon-wrap {
     display: flex;
@@ -106,7 +128,7 @@ getGoodsType().then(res => {
 }
 
 .swipe-wrap {
-  margin-top: 40px;
+  margin-top: 34px;
 
   .my-swipe .van-swipe-item {
     color: #fff;

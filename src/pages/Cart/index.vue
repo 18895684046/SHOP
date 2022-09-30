@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="submit-wrap">
-            <van-submit-bar :price="totalPrice" :disabled="!cpmputedSelect" button-text="去结算" @click="test">
+            <van-submit-bar :price="totalPrice" :disabled="!cpmputedSelect" button-text="去结算" @submit="onSubmit">
                 <van-checkbox v-model="checkedAll">全选</van-checkbox>
             </van-submit-bar>
         </div>
@@ -75,9 +75,7 @@ import router from '@/router';
 import { useRouter } from 'vue-router';
 const isLogin = ref<boolean>(true)
 const allCheckedShop = ref<boolean>(false)
-const numValue = ref<number>(1)
 const checkedAll = ref<boolean>(false)
-const isSelect = ref<boolean>(false)
 const shopLists = ref<any>([
     {
         id: nanoid(),
@@ -107,27 +105,13 @@ const cpmputedSelect = computed(() => {
     const isSelected = shopLists.value?.some((item: { curChecked: boolean; }) => item.curChecked)
     return isSelected
 })
-const tt = useRouter()
-const test = () => {
-    tt.push({
-        name: 'orderbase',
-        params: {
-            test: 11111
-        }
-    })
-}
-
 const onSubmit = () => {
     // 如果什么都不选那么提交按钮应该置灰
-    // if (!cpmputedSelect) return
-    // console.log(shopLists.value, '00');
-    // const selectedList = shopLists.value?.filter((item: { curChecked: boolean; }) => item.curChecked)
-    // console.log(selectedList, 'selectedList');
+    if (!cpmputedSelect) return
+    console.log(shopLists.value, '00');
+    const selectedList = shopLists.value?.filter((item: { curChecked: boolean; }) => item.curChecked)
     router.push({
         name: 'orderbase',
-        params: {
-            test: 11111
-        }
     })
 }
 

@@ -6,7 +6,8 @@ import {
     Button, Calendar, Col, Row, Field, CellGroup, Icon, Swipe, SwipeItem,
     Tabbar, TabbarItem, Card, NavBar, Sidebar, SidebarItem, Empty, Image as VanImage,
     ActionSheet, RadioGroup, Radio, Tab, Tabs, Checkbox, CheckboxGroup, Tag,
-    Stepper, SubmitBar, AddressList,AddressEdit,Area
+    Stepper, SubmitBar, AddressList,AddressEdit,Area,Search ,DropdownMenu, DropdownItem,
+    Switch,Cell,Sticky
 } from 'vant'
 
 import i18n from './locals/index'
@@ -28,7 +29,13 @@ app.use(Col).use(Row).use(Field).use(CellGroup).use(Icon).use(Swipe)
     .use(AddressList)
     .use(AddressEdit)
     .use(Area)
-
+    .use(Search)
+    .use(DropdownMenu)
+    .use(DropdownItem)
+    .use(Switch)
+    .use(Cell)
+    .use(Tag)
+    .use(Sticky)
 app.use(store, key)
 
 app.use(router)

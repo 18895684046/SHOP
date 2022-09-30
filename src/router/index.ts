@@ -25,6 +25,11 @@ const OrderBase = () => import('@/pages/OrderBase/index.vue')
 //  收货地址
 const ShipAddress = () => import('@/pages/ShipAddress/index.vue')
 
+//  搜索显标签页面
+const SearchTags = () => import('@/pages/SearchTags/index.vue')
+
+//  商品列表页
+const ShopList = () => import('@/pages/ShopList/index.vue')
 
 const routes: RouteRecordRaw[] = [
   {
@@ -53,6 +58,16 @@ const routes: RouteRecordRaw[] = [
     component: Classify
   },
   {
+    path: '/searchtags',
+    name: 'searchtags',
+    component: SearchTags
+  },
+  {
+    path: '/shoplist',
+    name: 'shoplist',
+    component: ShopList
+  },
+  {
     path: '/cart',
     name: 'cart',
     component: Cart,
@@ -73,7 +88,8 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/orderbase',
     name: 'orderbase',
-    component: OrderBase
+    props:true,
+    component: OrderBase,
   },
   {
     path: '/shipaddress',
@@ -94,7 +110,7 @@ const routes: RouteRecordRaw[] = [
 
 const router = createRouter({
   // base url 在此定义项目的公共路由前缀 这里我用测试用例举例
-  history: createWebHashHistory('/template/'),
+  history: createWebHistory('/template/'),
   routes,
 })
 
