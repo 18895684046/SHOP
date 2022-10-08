@@ -2,7 +2,8 @@
   <div class="container">
     <div class="hearder-wrap">
       <div class="header-search-wrap">
-        <van-search v-model="value" show-action placeholder="请输入搜索关键词" @focus="searchFocus" @search="onSearch" @cancel="onCancel" />
+        <van-search v-model="value" show-action placeholder="请输入搜索关键词" @focus="searchFocus" @search="onSearch"
+          @cancel="onCancel" />
       </div>
     </div>
     <div class="swipe-wrap">
@@ -20,27 +21,10 @@
       </div>
     </div>
     <div class="card-wrap">
-      <van-card class="card-single" price="2.00" desc="描述信息" title="商品标题"
-        thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg">
-      </van-card>
-      <van-card class="card-single" price="2.00" desc="描述信息" title="商品标题"
-        thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg">
-      </van-card>
-      <van-card class="card-single" price="2.00" desc="描述信息" title="商品标题"
-        thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg">
-      </van-card>
-      <van-card class="card-single" price="2.00" desc="描述信息" title="商品标题"
-        thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg">
-      </van-card>
-      <van-card class="card-single" price="2.00" desc="描述信息" title="商品标题"
-        thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg">
-      </van-card>
-      <van-card class="card-single" price="2.00" desc="描述信息" title="商品标题"
-        thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg">
-      </van-card>
-      <van-card class="card-single" price="2.00" desc="描述信息" title="商品标题"
-        thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg">
-      </van-card>
+      <div class="card-single" @click="viewGoodDetail(item)" :key="item" v-for="item in 10">
+        <van-card price="2.00" desc="描述信息" title="商品标题" thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg">
+        </van-card>
+      </div>
     </div>
     <TabbarCom />
   </div>
@@ -72,9 +56,14 @@ getGoodsType().then(res => {
   console.log(res, '00');
   goodsTypes.value = res?.data
 })
-const searchFocus = () =>{
+const searchFocus = () => {
   console.log('11');
   router.push('/searchtags')
+}
+
+const viewGoodDetail = (id: any) => {
+  console.log(id);
+  router.push(`/goodDetail/${id}`)
 }
 
 

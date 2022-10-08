@@ -31,6 +31,9 @@ const SearchTags = () => import('@/pages/SearchTags/index.vue')
 //  商品列表页
 const ShopList = () => import('@/pages/ShopList/index.vue')
 
+// 单个商品详情
+const GoodDetail = () => import('@/pages/GoodDetail/index.vue')
+
 const routes: RouteRecordRaw[] = [
   {
     path: '/example',
@@ -51,6 +54,11 @@ const routes: RouteRecordRaw[] = [
     path: '/example3',
     name: 'example3',
     component: Example
+  },
+  {
+    path: '/goodDetail/:id',
+    name: 'goodDetail',
+    component: GoodDetail
   },
   {
     path: '/classify',
