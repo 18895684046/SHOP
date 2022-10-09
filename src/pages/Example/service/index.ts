@@ -4,7 +4,8 @@ import config from './config'
 const {
   swipeList,
   allGoodsType,
-  homeGoodsList
+  homeGoodsList,
+  goosDetailsById
 } = config
 
 // 获取轮播图信息
@@ -28,5 +29,13 @@ export const getGoodsList = () => {
   return request({
     url: homeGoodsList,
     method: 'get'
+  })
+}
+
+// 根据 id 获取商品详情
+export const getGoodDetailById = (params: { id: string }) => {
+  return request({
+    url: goosDetailsById + params?.id,
+    method: 'get',
   })
 }

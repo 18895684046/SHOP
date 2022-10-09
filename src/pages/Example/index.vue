@@ -159,7 +159,6 @@ const viewGoodDetail = (id: string) => {
   width: 375px;
   height: 160px;
   position: relative;
-  // background: green;
 
   .singe-classify {
     width: 20%;
@@ -173,7 +172,6 @@ const viewGoodDetail = (id: string) => {
       width: 44px;
       border-radius: 10px;
     }
-
   }
 }
 
@@ -191,7 +189,6 @@ const viewGoodDetail = (id: string) => {
       padding: 0px;
       background: #ffffff;
       border-radius: 7px;
-
     }
 
     :deep(.van-card__header) {
