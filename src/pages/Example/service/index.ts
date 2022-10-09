@@ -3,7 +3,8 @@ import config from './config'
 
 const {
   swipeList,
-  allGoodsType
+  allGoodsType,
+  homeGoodsList
 } = config
 
 // 获取轮播图信息
@@ -18,6 +19,14 @@ export const getSwipeList = () => {
 export const getGoodsType = () => {
   return request({
     url: allGoodsType,
+    method: 'get'
+  })
+}
+
+// 获取首页商品列表
+export const getGoodsList = () => {
+  return request({
+    url: homeGoodsList,
     method: 'get'
   })
 }

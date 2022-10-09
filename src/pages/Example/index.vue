@@ -21,8 +21,8 @@
       </div>
     </div>
     <div class="card-wrap">
-      <div class="card-single" @click="viewGoodDetail(item)" :key="item" v-for="item in 10">
-        <van-card price="2.00" desc="描述信息" title="商品标题" thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg">
+      <div class="card-single" @click="viewGoodDetail(shop?._id)" :key="shop._id" v-for="shop in shopList">
+        <van-card :price="shop.price?.toFixed(2)" :desc="shop.desc" :title="shop.title" :thumb="shop.imgUrl">
         </van-card>
       </div>
     </div>
@@ -36,13 +36,22 @@ import { useRouter } from 'vue-router';
 import { Toast, ToastOptions } from 'vant';
 
 import TabbarCom from '@/components/Tabbar.vue'
-import { getSwipeList, getGoodsType } from './service/index'
+import { getSwipeList, getGoodsType, getGoodsList } from './service/index'
+
+type Shop = {
+  _id: string,
+  title: string,
+  desc: string,
+  price: number,
+  imgUrl: string
+}
 
 const router = useRouter()
 const valueText = ref<string>('')
 const swipeList = ref<any[]>([])
 const goodsTypes = ref<any[]>([])
 const value = ref<string>('');
+const shopList = ref<Shop[]>([])
 const onSearch = (val: string | ToastOptions | undefined) => Toast(val);
 const onCancel = () => Toast('取消');
 
@@ -56,12 +65,21 @@ getGoodsType().then(res => {
   console.log(res, '00');
   goodsTypes.value = res?.data
 })
+
+getGoodsList().then(res => {
+  console.log(res, 'ffd');
+  if (res.success) {
+    shopList.value = res?.data
+  }
+
+})
+
 const searchFocus = () => {
   console.log('11');
   router.push('/searchtags')
 }
 
-const viewGoodDetail = (id: any) => {
+const viewGoodDetail = (id: string) => {
   console.log(id);
   router.push(`/goodDetail/${id}`)
 }
@@ -165,7 +183,31 @@ const viewGoodDetail = (id: any) => {
   padding-bottom: 50px;
 
   .card-single {
-    width: 50%;
+    width: 182px;
+    box-sizing: border-box;
+    padding: 5px;
+    margin-left: 4px;
+    :deep(.van-card){
+      padding: 0px;
+      background: #ffffff;
+      border-radius: 7px;
+
+    }
+
+    :deep(.van-card__header) {
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
+
+    :deep(.van-card__thumb) {
+      width: 100%;
+      height: 172px;
+      margin-right: 0px;
+    }
+    :deep(.van-card__content){
+      min-height: 40px;
+    }
   }
 }
 
