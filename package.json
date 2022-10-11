@@ -17,6 +17,8 @@
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "pinia": "^2.0.22",
+    "rrweb": "^2.0.0-alpha.3",
+    "rrweb-player": "^1.0.0-alpha.3",
     "vant": "^3.5.1",
     "vue": "^3.2.6",
     "vue-router": "4",

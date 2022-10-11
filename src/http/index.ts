@@ -4,11 +4,11 @@ import { Base64 } from 'js-base64'
 import { RELOGIN_CODES, NO_PERMISSION_CODES } from './errorCode'
 
 const jwt = Cookies.get('jwt') || ''
+const isPro = import.meta.env.MODE === 'production'
 
 const service = axios.create({
   // 当传入的url为绝对路径时 不起作用
-  baseURL: import.meta.env.VITE_HTTP_BASE_URL as string,
-  // baseURL: '/api',
+  baseURL: isPro ?  import.meta.env.VITE_HTTP_BASE_URL as string : 'http://127.0.0.1:3004/api',
 
   // 测试服需要在header中添加jwt做权限验证
   // headers: {
@@ -66,6 +66,8 @@ service.interceptors.response.use(
 
 // 返回 Promise
 const request = (config: AxiosRequestConfig): Promise<any> => {
+  console.log(config,'config');
+  
   let { url, params } = config
 
   // 获取url中所有的动态参数名
@@ -103,6 +105,8 @@ const request = (config: AxiosRequestConfig): Promise<any> => {
       )
     }
   }
+  console.log(url,'3');
+  
 
   return service({
     ...config,

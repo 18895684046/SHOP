@@ -22,14 +22,14 @@ export default defineConfig({
     }
   },
   // 代理
-  server: {
-    cors: true, // 默认启用并允许任何源
-    proxy: {
-      '/app-api': {
-        target: 'http://mall.werfamily.fun/app-api/',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/app-api/, '')
-      }
-    }
-  },
+  // server: {
+  //   cors: true, // 默认启用并允许任何源
+  //   proxy: {
+  //     '/app-api': {
+  //       target: 'http://mall.werfamily.fun/app-api/',
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/app-api/, '')
+  //     }
+  //   }
+  // },
 })

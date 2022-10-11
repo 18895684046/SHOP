@@ -48,6 +48,7 @@ const handlePrice = computed(()=>{
         return goodsDetail.value?.price
     }
 })
+
 const dotPrice = computed(()=>{
     if(goodsDetail.value?.price?.includes('.')){
         return goodsDetail.value?.price?.split('.')[1]?.padEnd(2,'0')

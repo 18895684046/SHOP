@@ -44,9 +44,11 @@
         </div>
     </div>
     <TabbarCom />
+
 </template>
 <script setup lang="ts">
-import TabbarCom from '@/components/Tabbar.vue'
+
+
 </script>
 
 <style lang="scss" scoped>
