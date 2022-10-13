@@ -135,7 +135,7 @@ const viewGoodDetail = (id: string) => {
 }
 
 .swipe-wrap {
-  margin-top: 34px;
+  padding-top: 34px;
 
   .my-swipe .van-swipe-item {
     color: #fff;

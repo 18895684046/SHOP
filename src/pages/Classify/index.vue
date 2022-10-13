@@ -4,47 +4,12 @@
     </div>
     <div class="sidebar-wrap">
         <div class="left-wrap">
-            <van-sidebar @change="onSiderBarChange" v-model="active">
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
+            <van-sidebar v-model="active">
+                <van-sidebar-item @click="onSiderBarChange(c?.name)"  v-for="c in categoryList" :title="c?.name"></van-sidebar-item>
             </van-sidebar>
         </div>
         <div class="right-wrap">
-            <div v-if="curIndex === 1">
-                <h3>标题</h3>
-            </div>
-            <div v-else>
-                暂无数据
-            </div>
+            <div class="big-title">{{curName}}</div>
         </div>
     </div>
     <TabbarCom />
@@ -54,18 +19,32 @@
 import { ref } from 'vue'
 import TabbarCom from '@/components/Tabbar.vue'
 import TitleCpm from '@/components/Title.vue';
+import { getCategoryFunc } from './service/index'
+import { Category } from './interface'
 
 const active = ref<number>(0);
-const curIndex = ref<number>(0)
+const curName = ref<string>('热门推荐')
+const categoryList = ref<Category[]>([])
+
+getCategoryFunc().then(res => {
+    console.log(res, '分类数据');
+    if (res?.success) {
+        categoryList.value = res?.data
+    }
+})
 
 // tabber bar 切换事件
-const onSiderBarChange = (index: number) => {
-    console.log(index, '索引');
-    curIndex.value = index
+const onSiderBarChange = (name: string) => {
+    console.log(name, '索引');
+    curName.value = name
 }
 
 </script>
 <style lang="scss" scoped>
+:deep(.van-sidebar-item) {
+    padding: 13px 12px;
+}
+
 .classify-title {
     position: fixed;
     top: 0px;
@@ -88,6 +67,12 @@ const onSiderBarChange = (index: number) => {
         position: fixed;
         top: 45px;
         left: 80px;
+        .big-title{
+            font-size: 15px;
+            padding-top: 12px;
+            padding-left: 5px;
+            font-weight: bold;
+        }
     }
 }
 </style>
