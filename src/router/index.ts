@@ -38,7 +38,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/example',
     name: 'example',
-    component: Example
+    component: Example,
   },
   {
     path: '/example1',
@@ -96,7 +96,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/orderbase',
     name: 'orderbase',
-    props:true,
+    props: true,
     component: OrderBase,
   },
   {
@@ -104,7 +104,7 @@ const routes: RouteRecordRaw[] = [
     name: 'shipaddress',
     component: ShipAddress
   },
-  
+
   {
     path: '/',
     redirect: '/example'

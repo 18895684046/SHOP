@@ -63,6 +63,7 @@ const onSiderBarChange = (name: string) => {
     }
 
     .right-wrap {
+    
         width: calc(100vw - 80px);
         position: fixed;
         top: 45px;

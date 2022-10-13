@@ -68,7 +68,7 @@
 <script setup lang="ts">
 import TabbarCom from '@/components/Tabbar.vue'
 import TitleCpm from '@/components/Title.vue';
-import { ref, watch, toRaw } from 'vue'
+import { ref, watch, toRaw, onMounted, onActivated, onDeactivated, onBeforeMount, onBeforeUnmount, onUnmounted } from 'vue'
 import { nanoid } from 'nanoid'
 import { computed } from '@vue/reactivity';
 import router from '@/router';
@@ -93,6 +93,7 @@ const shopLists = ref<any>([
         price: 65
     },
 ])
+
 shopLists.value = shopLists.value.map((item: any) => {
     return {
         ...item,

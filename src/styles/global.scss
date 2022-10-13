@@ -37,6 +37,21 @@ body {
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px #ddd;
 }
+// 背景颜色
+// ::selection {
+//   background:#d3d3d3;
+//   color:#555;
+// }
+
+// ::-moz-selection {
+//   background:#d3d3d3;
+//   color:#555;
+// }
+
+// ::-webkit-selection {
+//   background:#d3d3d3;
+//   color:#555;
+// }
 
 a {
   text-decoration: none;
