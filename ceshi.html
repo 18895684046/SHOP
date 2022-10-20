@@ -1,0 +1,98 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #box{
+        width: 200px;
+        height: 300px;
+        background: gray;
+    }
+</style>
+<body>
+    <div id="box"></div>
+    
+</body>
+
+<script>
+    const isElementVisible = (el) => {
+        //const rect = el.getBoundingClientRect();
+        //console.log(rect,'rect');
+        const vWidth = window.innerWidth || document.documentElement.clientWidth;
+        const vHeight = window.innerHeight || document.documentElement.clientHeight;
+        console.log(vWidth,vHeight);
+    };
+    const nodeEle = document.getElementById('box')
+    isElementVisible(nodeEle)
+
+
+</script>
+
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片懒加载</title>
+    <style>
+        .box {
+            width: 100%;
+            height: 100%;
+        }
+
+        .text {
+            width: 100%;
+            height: 300px;
+            background-color: antiquewhite;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="text">这是文字</div>
+        <div class="text">这是文字</div>
+        <div class="text">这是文字</div>
+
+        <img data-src="./images/tbg.jpg" alt="">
+        <img data-src="./images/1.jfif" alt="">
+        <img data-src="./images/tbg.jpg" alt="">
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('img');
+        const callback = entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const image = entry.target;
+                    const data_src = image.getAttribute('data-src');
+                    image.setAttribute('src', data_src);
+                    observer.unobserve(image);
+                }
+            });
+        }
+
+        const observer = new IntersectionObserver(callback);
+
+        images.forEach(image => {
+            observer.observe(image);
+        })
+    </script>
+</body>
+
+</html>
